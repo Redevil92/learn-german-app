@@ -29,6 +29,8 @@ def create_app(test_config=None):
     def hello():
         return 'Hello, World!'
     
+    app.config['UPLOAD_FOLDER'] = 'C:/coding/web-apps/learn-german-app/Backend/flaskr/static'
+
     from . import db
     db.init_app(app)
 
@@ -37,6 +39,10 @@ def create_app(test_config=None):
 
     from . import blog
     app.register_blueprint(blog.bp)
+    app.add_url_rule('/', endpoint='index')
+
+    from . import dbUploader
+    app.register_blueprint(dbUploader.bp)
     app.add_url_rule('/', endpoint='index')
 
     return app
