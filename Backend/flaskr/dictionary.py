@@ -1,10 +1,12 @@
 from flask import (
-    Blueprint, jsonify, flash, g, redirect, render_template, request, url_for
+    Blueprint, jsonify, render_template, request, url_for
 )
 from werkzeug.exceptions import abort
 
 from flaskr.auth import login_required
 from flaskr.db import get_db
+
+from flaskr.models.wordTranslation import WordTranslation
 
 bp = Blueprint('dictionary', __name__)
 
@@ -19,6 +21,12 @@ def index():
     return render_template('blog/index.html', posts=posts)
 
 
+def create_words(tuples):
+    words = []
+    for tuple in tuples:
+        words.append(WordTranslation(*tuple).to_dict())
+    return words
+
 def get_words(word):
     rows = get_db().execute(
         'SELECT *'
@@ -26,8 +34,9 @@ def get_words(word):
         ' WHERE definition = ?',
         (word,)
     ).fetchall()
-    print("******",rows)
-    return [tuple(row) for row in rows]
+    tuples = [tuple(row) for row in rows]
+    return create_words(tuples)
+
 
 @bp.route('/dictionary/<string:word>', methods=['GET'])
 def get_word(word):
@@ -37,5 +46,5 @@ def get_word(word):
         return jsonify({"message": "No words found for that definition."}), 404
 
     # Return the list of words as a JSON response
-    return jsonify(list( words))
+    return jsonify(words)
 
