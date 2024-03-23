@@ -19,8 +19,7 @@ CREATE TABLE post (
 
 CREATE TABLE german_english_dictionary (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  definition TEXT,
-  translation TEXT,
-  definition_type TEXT,
-  extra_info TEXT
+  word TEXT,
+  word_in_detail TEXT,
+  translation TEXT
 );

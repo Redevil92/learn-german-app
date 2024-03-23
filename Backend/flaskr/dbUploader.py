@@ -31,10 +31,55 @@ def uploadFiles():
         filename = file.filename
         file_path = os.path.join(current_app.config['UPLOAD_FOLDER'], filename)
         file.save(file_path)
-        parseCSV(file_path)
+        parseText(file_path)
         return redirect(url_for('index'))
     return redirect(url_for('index'))
 
+
+def parseText(filePath):
+    # Using readline()
+    file1 = open(filePath, 'r', encoding='utf-8')
+    count = 0
+    db = get_db()
+    
+    while True:
+        count += 1
+    
+        # Get next line from file
+        line = file1.readline()
+        word = ''
+        word_in_detail = ''
+        translation = ''
+
+        delimiter_index = min(line.find("{"), line.find(";")) 
+        if delimiter_index != -1 or delimiter_index == 0: 
+            word = line[:delimiter_index]  
+        else:
+            word = line[:line.find("::")]
+
+        delimiter_index = line.find("::")
+        if delimiter_index != -1:
+            word_in_detail = line[:delimiter_index]
+            translation = line[delimiter_index+2:]
+
+        if count > 176940:
+            print("count ", count)
+            print("word ", word, " word_in_detail ", word_in_detail, " translation ", translation)
+
+        if not line:
+            break
+        
+        db.execute(
+            "INSERT INTO german_english_dictionary (word,word_in_detail, translation) VALUES (?, ?, ?)",
+            (word, word_in_detail, translation) 
+        )
+
+        if count%100 == 0:
+            print(count, " rows inserted")
+    
+    print("Data Saved Successfully, commiting to the database")
+    db.commit()
+    file1.close()
 
 def parseCSV(filePath):
     # CVS Column Names
@@ -44,9 +89,6 @@ def parseCSV(filePath):
     db = get_db()
     # Loop through the Rows
     for i,row in csvData.iterrows():
-    
-        sql = "INSERT INTO german_english_dictionary (definition,translation,definition_type, extra_info) VALUES (%s, %s, %s, %s)"
-        value = (row['definition'],row['translation'],row['definition_type'],row['extra_info'])
         
         db.execute(
             "INSERT INTO german_english_dictionary (definition,translation,definition_type, extra_info) VALUES (?, ?, ?, ?)",

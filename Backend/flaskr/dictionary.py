@@ -28,11 +28,22 @@ def create_words(tuples):
     return words
 
 def get_words(word):
+    # SELECT *
+    # FROM your_table
+    # WHERE type IN ('noun', 'verb')  -- Filter by preferred types (noun or verb)
+    # ORDER BY 
+    # CASE WHEN type IN ('noun', 'verb') THEN 0 ELSE 1 END ASC,  -- Prioritize preferred types
+    # LENGTH(description) ASC,  -- Sort by description length (shorter first)
+    # your_value_column DESC  -- Sort by value (highest last)
+    # LIMIT 10;
     rows = get_db().execute(
         'SELECT *'
         ' FROM german_english_dictionary'
-        ' WHERE definition = ?',
-        (word,)
+        ' WHERE definition LIKE ?'
+        ' ORDER BY CASE WHEN definition_type IN (?,?) THEN 0 ELSE 1 END ASC,'
+        ' LENGTH(definition) ASC, definition DESC '
+        ' LIMIT 20 ',
+        ('%'+word+'%','noun','verb')
     ).fetchall()
     tuples = [tuple(row) for row in rows]
     return create_words(tuples)
