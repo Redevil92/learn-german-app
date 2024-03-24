@@ -79,7 +79,7 @@ def parseText(filePath):
         
         db.execute(
             "INSERT INTO german_english_dictionary (word,word_in_detail, translation) VALUES (?, ?, ?)",
-            (word, word_in_detail, translation) 
+            (word.strip(), word_in_detail.strip(), translation.strip()) 
         )
 
         if count % 3000 == 0:

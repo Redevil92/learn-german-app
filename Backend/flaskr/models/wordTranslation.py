@@ -1,20 +1,18 @@
 class WordTranslation:
-  def __init__(self,id, definition, translation, definition_type, extra_info):
+  def __init__(self,id, word, word_in_detail, translation):
     self.id = id
-    self.definiton = definition
+    self.word = word
+    self.word_in_detail = word_in_detail
     self.translation = translation
-    self.definition_type = definition_type
-    self.extra_info = extra_info
   
   def to_dict(self):
     return {
         "id": self.id,
-        "definition": self.definiton,
+        "word": self.word,
+        "word_in_detail": self.word_in_detail,
         "translation": self.translation,
-        "definition_type": self.definition_type,
-        "extra_info": self.extra_info
     }
 
   def __repr__(self):
-    return f'WordTranslation({self.id}, {self.definition}, {self.translation}, {self.definition_type}, {self.extra_info})'
+    return f'WordTranslation({self.id}, {self.word}, {self.word_in_detail}, {self.translation})'
   

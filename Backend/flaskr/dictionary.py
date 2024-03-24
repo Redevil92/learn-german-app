@@ -39,11 +39,10 @@ def get_words(word):
     rows = get_db().execute(
         'SELECT *'
         ' FROM german_english_dictionary'
-        ' WHERE definition LIKE ?'
-        ' ORDER BY CASE WHEN definition_type IN (?,?) THEN 0 ELSE 1 END ASC,'
-        ' LENGTH(definition) ASC, definition DESC '
-        ' LIMIT 20 ',
-        ('%'+word+'%','noun','verb')
+        ' WHERE word LIKE ?'
+        ' ORDER BY LENGTH(word) ASC '
+        ' LIMIT 10 ',
+        (word+'%',)
     ).fetchall()
     tuples = [tuple(row) for row in rows]
     return create_words(tuples)
