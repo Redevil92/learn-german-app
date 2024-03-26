@@ -1,6 +1,7 @@
 import os
 
 from flask import Flask
+from flask_cors import CORS
 
 
 def create_app(test_config=None):
@@ -48,5 +49,7 @@ def create_app(test_config=None):
     from . import dbUploader
     app.register_blueprint(dbUploader.bp)
     app.add_url_rule('/', endpoint='index')
+
+    CORS(app, support_credentials=True)
 
     return app
