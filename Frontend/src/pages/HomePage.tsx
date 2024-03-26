@@ -29,19 +29,6 @@ export default function HomePage() {
     firstResult &&
     string.getFirstValueInCurlyBrackets(firstResult.word_in_detail);
 
-  const genreToArticle = (string: string) => {
-    switch (string) {
-      case "m":
-        return "Der";
-      case "f":
-        return "Die";
-      case "n":
-        return "Das";
-      default:
-        return "";
-    }
-  };
-
   const wordTraslationsItems = wordTraslations?.map((word, index) => (
     <WordTranslations key={index} wordTranslation={word} />
   ));

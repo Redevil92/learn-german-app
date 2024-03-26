@@ -1,5 +1,5 @@
 import Word from "../../models/Word";
-import { bestimmteArtikel } from "../../GermanGrammar/Articles";
+import "./wordTranslation.css";
 
 export default function WordTranslations({
   wordTranslation,
@@ -9,12 +9,12 @@ export default function WordTranslations({
   return (
     <>
       <div className="flex">
-        <div className="tra">
+        <div className="translation">
           {wordTranslation.word_in_detail.split("|").map((word) => (
             <p>{word}</p>
           ))}
         </div>
-        <div>
+        <div className="translation">
           {wordTranslation.translation.split("|").map((translation) => (
             <p>{translation}</p>
           ))}
