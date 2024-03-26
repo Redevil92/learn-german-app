@@ -3,8 +3,9 @@ import { getTraslations } from "../api/dictionaryApi";
 import Word from "../models/Word";
 import * as string from "../utils/string";
 import { bestimmteArtikel } from "../GermanGrammar/Articles";
+import WordTranslations from "../components/WordTranslation";
 
-export default function Form() {
+export default function HomePage() {
   const [search, setSearch] = useState<string>("");
   const [words, setWords] = useState<Word[]>();
 
@@ -41,6 +42,10 @@ export default function Form() {
     }
   };
 
+  const wordTraslationsItems = wordTraslations?.map((word, index) => (
+    <WordTranslations key={index} wordTranslation={word} />
+  ));
+
   return (
     <>
       <h2>Search a German word</h2>
@@ -55,8 +60,7 @@ export default function Form() {
           <h3>
             {bestimmteArtikel[wordGenre ?? ""]} {firstResult.word}
           </h3>
-          <p>Details: {firstResult.word_in_detail}</p>
-          <p>Translation: {firstResult.translation}</p>
+          {wordTraslationsItems}
         </div>
       )}
     </>
