@@ -41,12 +41,12 @@ export default function HomePage() {
         <input type="text" onChange={handleInputChange} />
         <button type="submit">Submit</button>
       </form>
-      WORDS: {wordTraslations?.length}
+
       {firstResult && (
         <div>
-          <h3>
-            {bestimmteArtikel[wordGenre ?? ""]} {firstResult.word}
-          </h3>
+          <h2>
+            <span>{bestimmteArtikel[wordGenre ?? ""]}</span> {firstResult.word}
+          </h2>
           {wordTraslationsItems}
         </div>
       )}

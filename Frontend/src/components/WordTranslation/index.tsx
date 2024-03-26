@@ -14,7 +14,7 @@ export default function WordTranslations({
             <p>{word}</p>
           ))}
         </div>
-        <div className="translation">
+        <div className="translation margin-left">
           {wordTranslation.translation.split("|").map((translation) => (
             <p>{translation}</p>
           ))}
