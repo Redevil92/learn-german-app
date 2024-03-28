@@ -8,18 +8,14 @@ export default function WordTranslations({
 }) {
   return (
     <>
-      <div className="flex">
-        <div className="translation">
-          {wordTranslation.word_in_detail.split("|").map((word) => (
-            <p>{word}</p>
-          ))}
+      {wordTranslation.word_in_detail.split("|").map((word, index) => (
+        <div className="flex">
+          <div className="translation">{word}</div>
+          <div className="translation margin-left">
+            {wordTranslation.translation.split("|")[index]}
+          </div>
         </div>
-        <div className="translation margin-left">
-          {wordTranslation.translation.split("|").map((translation) => (
-            <p>{translation}</p>
-          ))}
-        </div>
-      </div>
+      ))}
     </>
   );
 }

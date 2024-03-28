@@ -4,16 +4,25 @@ import Word from "../models/Word";
 import * as string from "../utils/string";
 import { bestimmteArtikel } from "../GermanGrammar/Articles";
 import WordTranslations from "../components/WordTranslation";
+import { AxiosError } from "axios";
 
 export default function HomePage() {
   const [search, setSearch] = useState<string>("");
   const [words, setWords] = useState<Word[]>();
+  const [wordNotFound, setWordNotFound] = useState<boolean>(false);
 
   const handleSearch = async (event: FormEvent) => {
     event.preventDefault();
     event.stopPropagation();
-    const result = await getTraslations(search);
-    setWords(result);
+    try {
+      const result = await getTraslations(search);
+      setWords(result);
+      setWordNotFound(false);
+    } catch (error) {
+      if (error instanceof AxiosError && error.response?.status === 404) {
+        setWordNotFound(true);
+      }
+    }
   };
 
   function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -50,6 +59,7 @@ export default function HomePage() {
           {wordTraslationsItems}
         </div>
       )}
+      {wordNotFound && <p>Word not found</p>}
     </>
   );
 }

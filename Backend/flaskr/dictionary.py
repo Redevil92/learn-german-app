@@ -28,14 +28,6 @@ def create_words(tuples):
     return words
 
 def get_words(word):
-    # SELECT *
-    # FROM your_table
-    # WHERE type IN ('noun', 'verb')  -- Filter by preferred types (noun or verb)
-    # ORDER BY 
-    # CASE WHEN type IN ('noun', 'verb') THEN 0 ELSE 1 END ASC,  -- Prioritize preferred types
-    # LENGTH(description) ASC,  -- Sort by description length (shorter first)
-    # your_value_column DESC  -- Sort by value (highest last)
-    # LIMIT 10;
     rows = get_db().execute(
         'SELECT *'
         ' FROM german_english_dictionary'
@@ -52,9 +44,7 @@ def get_words(word):
 def get_word(word):
     words = get_words(word)
     if not words:
-        # Handle the case where no matching words are found
         return jsonify({"message": "No words found for that definition."}), 404
 
-    # Return the list of words as a JSON response
     return jsonify(words)
 
