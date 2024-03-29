@@ -1,10 +1,12 @@
 import React, { FormEvent, useState } from "react";
-import { getTraslations } from "../api/dictionaryApi";
-import Word from "../models/Word";
-import * as string from "../utils/string";
-import { bestimmteArtikel } from "../GermanGrammar/Articles";
-import WordTranslations from "../components/WordTranslation";
+import { getTraslations } from "../../api/dictionaryApi";
+import Word from "../../models/Word";
+import * as string from "../../utils/string";
+import { bestimmteArtikel } from "../../GermanGrammar/Articles";
+import WordTranslations from "../../components/WordTranslation";
+import "./HomePage.css";
 import { AxiosError } from "axios";
+import logo from "@/assets/logo/logo.svg";
 
 export default function HomePage() {
   const [search, setSearch] = useState<string>("");
@@ -20,6 +22,7 @@ export default function HomePage() {
       setWordNotFound(false);
     } catch (error) {
       if (error instanceof AxiosError && error.response?.status === 404) {
+        setWords(undefined);
         setWordNotFound(true);
       }
     }
@@ -44,22 +47,29 @@ export default function HomePage() {
 
   return (
     <>
-      <h2>Search a German word</h2>
-      <p>Search a German word to get its article and its English translation</p>
-      <form onSubmit={handleSearch}>
-        <input type="text" onChange={handleInputChange} />
-        <button type="submit">Submit</button>
-      </form>
+      <div className="content-home-page">
+        <img src={logo} className="home-page-logo" alt="Logo" />
+        <form className="search-word-form" onSubmit={handleSearch}>
+          <input
+            type="text"
+            className="search-word-input"
+            placeholder="Search a word in German..."
+            onChange={handleInputChange}
+          />
+          <span className="material-icons search-icon">search</span>
+        </form>
 
-      {firstResult && (
-        <div>
-          <h2>
-            <span>{bestimmteArtikel[wordGenre ?? ""]}</span> {firstResult.word}
-          </h2>
-          {wordTraslationsItems}
-        </div>
-      )}
-      {wordNotFound && <p>Word not found</p>}
+        {firstResult && (
+          <div>
+            <h2>
+              <span>{bestimmteArtikel[wordGenre ?? ""]}</span>{" "}
+              {firstResult.word}
+            </h2>
+            {wordTraslationsItems}
+          </div>
+        )}
+        {wordNotFound && <p>Word not found</p>}
+      </div>
     </>
   );
 }

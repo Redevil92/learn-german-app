@@ -1,5 +1,5 @@
 import Word from "../../models/Word";
-import "./wordTranslation.css";
+import "./WordTranslation.css";
 
 export default function WordTranslations({
   wordTranslation,
