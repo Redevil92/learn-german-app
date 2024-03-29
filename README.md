@@ -19,7 +19,9 @@ Open a terminal window and navigate to the root directory of the project (where 
 Install the required dependencies for both frontend and backend:
 
 ```bash
+cd cd Frontend
 npm install  # Installs React, Vite, and other frontend dependencies
+cd ..\Backend\
 pip install -r backend/requirements.txt  # Installs Flask and other backend dependencies
 ```
 
