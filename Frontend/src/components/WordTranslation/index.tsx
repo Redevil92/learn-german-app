@@ -9,7 +9,7 @@ export default function WordTranslations({
   return (
     <>
       {wordTranslation.word_in_detail.split("|").map((word, index) => (
-        <div className="flex">
+        <div className="flex" key={`word-${index}`}>
           <div className="translation">{word}</div>
           <div className="translation margin-left">
             {wordTranslation.translation.split("|")[index]}

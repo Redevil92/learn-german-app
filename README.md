@@ -54,7 +54,7 @@ This will start the backend server, typically listening on http://127.0.0.1:5000
 Navigate back to the project's root directory in the other terminal window:
 
 ```bash
-cd ../frontEnd
+cd ..\Frontend\
 ```
 
 Start the React development server with Vite:
