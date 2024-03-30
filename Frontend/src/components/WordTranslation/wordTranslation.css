@@ -1,13 +1,16 @@
-.flex {
-  display: flex;
+.translation {
+  text-align: left;
+  margin: 0 auto;
+}
+
+.word-traslated {
+  color: var(--font-color_light);
 }
 
 .translation {
-  width: 300px;
-  margin-left: 10px;
-  text-align: left;
 }
 
-.margin-left {
-  margin-left: 20px;
+.word-item {
+  margin-top: 10px;
+  font-size: var(--medium-font-size);
 }

@@ -1,0 +1,23 @@
+.word-description {
+  margin-bottom: 20px;
+}
+
+.word-description-title {
+  margin-bottom: 0px;
+}
+
+.das-article {
+  color: var(--neuter-color);
+}
+
+.der-article {
+  color: var(--masculine-color);
+}
+
+.die-article {
+  color: var(--feminine-color);
+}
+
+.genre {
+  font-style: italic;
+}

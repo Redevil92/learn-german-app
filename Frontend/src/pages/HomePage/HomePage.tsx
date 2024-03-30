@@ -7,6 +7,8 @@ import WordTranslations from "../../components/WordTranslation";
 import "./HomePage.css";
 import { AxiosError } from "axios";
 import logo from "@/assets/logo/logo.svg";
+import { GenreEnum } from "../../models/GenreEnum";
+import WordDescription from "../../components/WordDescription";
 
 export default function HomePage() {
   const [search, setSearch] = useState<string>("");
@@ -39,7 +41,9 @@ export default function HomePage() {
 
   const wordGenre =
     firstResult &&
-    string.getFirstValueInCurlyBrackets(firstResult.word_in_detail);
+    (string.getFirstValueInCurlyBrackets(
+      firstResult.word_in_detail
+    ) as GenreEnum);
 
   const wordTraslationsItems = wordTraslations?.map((word, index) => (
     <WordTranslations key={index} wordTranslation={word} />
@@ -61,10 +65,11 @@ export default function HomePage() {
 
         {firstResult && (
           <div>
-            <h2>
-              <span>{bestimmteArtikel[wordGenre ?? ""]}</span>{" "}
-              {firstResult.word}
-            </h2>
+            <WordDescription
+              genre={wordGenre}
+              word={firstResult.word}
+            ></WordDescription>
+
             {wordTraslationsItems}
           </div>
         )}
