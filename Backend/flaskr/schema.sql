@@ -23,3 +23,11 @@ CREATE TABLE german_english_dictionary (
   word_in_detail TEXT,
   translation TEXT
 );
+
+CREATE TABLE saved_words (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id INTEGER NOT NULL,
+  word_id INTEGER NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES user (id),
+  FOREIGN KEY (word_id) REFERENCES german_english_dictionary (id)
+);
