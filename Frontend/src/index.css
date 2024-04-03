@@ -19,6 +19,8 @@
   --box-shadow: 0 1px 6px 0 var(--color-box-shadow);
   --color-box-shadow: #20212447;
 
+  --search-input-width: 500px;
+
   --medium-font-size: 14px;
 
   --neuter-color: #a4a4a4;

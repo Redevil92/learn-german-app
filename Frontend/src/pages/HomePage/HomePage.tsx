@@ -64,7 +64,7 @@ export default function HomePage() {
         </form>
 
         {firstResult && (
-          <div>
+          <div className="words-list">
             <WordDescription
               genre={wordGenre}
               word={firstResult.word}

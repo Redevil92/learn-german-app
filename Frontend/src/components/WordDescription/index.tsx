@@ -17,15 +17,23 @@ export default function WordDescription({
     adv: "Adverb",
   };
 
+  //   const isWordSaved = useSavedWordsStore((state: any) =>
+  //     state.savedWords.map((word:Word)=> word.word).includes(word)
+  //   );
+
   return (
     <>
       <div className="word-description">
-        <h2 className="word-description-title">
-          <span className={`${bestimmteArtikel[genre ?? ""]}-article`}>
-            {bestimmteArtikel[genre ?? ""]}
-          </span>{" "}
-          {word}
-        </h2>
+        <div className="flex">
+          <h2 className="word-description-title">
+            <span className={`${bestimmteArtikel[genre ?? ""]}-article`}>
+              {bestimmteArtikel[genre ?? ""]}
+            </span>{" "}
+            {word}
+          </h2>
+          <span className="material-icons">star_outline</span>
+        </div>
+
         <div className="genre">{genre && <div>{genresLookup[genre]}</div>}</div>
       </div>
     </>
