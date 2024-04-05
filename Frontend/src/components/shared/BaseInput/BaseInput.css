@@ -1,0 +1,18 @@
+.base-input-label {
+  font-size: var(--small-font-size);
+  color: var(--font-color);
+  margin-bottom: 5px;
+  font-weight: var(--bold-font-weight);
+}
+
+.base-input {
+  width: calc(100% - 20px);
+  padding: 5px 10px;
+  font-family: inherit;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--font-color_light);
+  font-size: var(--medium-font-size);
+  font-weight: var(--normal-font-weight);
+  color: var(--font-color);
+  box-shadow: var(--box-shadow);
+}

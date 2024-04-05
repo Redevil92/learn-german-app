@@ -3,7 +3,7 @@ import BaseButton from "../../shared/BaseButton";
 import LoginDialog from "../LoginDialog";
 import RegisterDialog from "../RegisterDialog";
 import { useState } from "react";
-import { ButtonType } from "../../shared/BaseButton/ButtonType";
+import { ButtonVariant } from "../../shared/BaseButton/ButtonVariant";
 
 export default function LoginSection() {
   const [showLoginDialog, setShowLoginDialog] = useState<boolean>(false);
@@ -14,13 +14,13 @@ export default function LoginSection() {
       <div className="login-section-position">
         <BaseButton
           text="Log in"
-          type={ButtonType.PRIMARY}
+          variant={ButtonVariant.PRIMARY}
           onClick={() => setShowLoginDialog(true)}
         />
         <div className="margin-left">
           <BaseButton
             text="Sign in"
-            type={ButtonType.SECONDARY}
+            variant={ButtonVariant.SECONDARY}
             onClick={() => setShowRegisterDialog(true)}
           />
         </div>

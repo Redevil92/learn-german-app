@@ -9,6 +9,17 @@
   font-family: inherit;
 }
 
+.base-button-disabled {
+  background-color: #f0f0f0 !important;
+  color: #a9a9a9;
+  opacity: 0.5;
+  cursor: unset;
+}
+
+.base-button-disabled:hover {
+  background-color: #f0f0f0;
+}
+
 /* PRIMARY */
 .base-button-primary {
   background-color: white;

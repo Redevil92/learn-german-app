@@ -1,11 +1,15 @@
 import { useState } from "react";
 import BaseDialog from "../../shared/BaseDialog";
 import BaseInput from "../../shared/BaseInput";
+import BaseButton from "../../shared/BaseButton";
+import "./RegisterDialog.css";
 
-export default function LoginSection({ onClose }: { onClose: () => any }) {
+export default function RegisterDialog({ onClose }: { onClose: () => any }) {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [repeatPassword, setRepeatPassword] = useState<string>("");
+
+  const registerHandler = () => {};
 
   return (
     <>
@@ -13,8 +17,8 @@ export default function LoginSection({ onClose }: { onClose: () => any }) {
         onClose={onClose}
         content={
           <div>
-            <h1>Register</h1>
-            <form>
+            <h2>Sign up</h2>
+            <form onSubmit={registerHandler}>
               <BaseInput
                 label="Username"
                 name="username"
@@ -36,8 +40,19 @@ export default function LoginSection({ onClose }: { onClose: () => any }) {
                 value={repeatPassword}
                 onChange={(event) => setRepeatPassword(event.target.value)}
               />
-
-              <button type="submit">Register</button>
+              <div className="submit-button-container">
+                <BaseButton
+                  type="submit"
+                  text="Sign up"
+                  disabled={
+                    !username ||
+                    !password ||
+                    !repeatPassword ||
+                    password !== repeatPassword
+                  }
+                  onClick={registerHandler}
+                />
+              </div>
             </form>
           </div>
         }

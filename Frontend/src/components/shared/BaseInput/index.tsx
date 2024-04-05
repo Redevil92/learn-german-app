@@ -1,3 +1,5 @@
+import "./BaseInput.css";
+
 export default function BaseInput({
   value,
   label,
@@ -16,12 +18,16 @@ export default function BaseInput({
   return (
     <>
       <div className="form-group">
-        {label && <label htmlFor="input-field">{label}</label>}
+        {label && (
+          <label className="base-input-label" htmlFor={name}>
+            {label}
+          </label>
+        )}
         <input
           type={type}
           value={value}
           name={name}
-          className="form-control"
+          className="base-input"
           placeholder={placeholder ? placeholder : ""}
           onChange={onChange}
         />
