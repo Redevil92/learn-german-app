@@ -1,0 +1,36 @@
+.base-button {
+  display: flex;
+  justify-content: center;
+  padding: 5px 10px;
+  border-radius: var(--border-radius);
+  font-size: var(--large-font-size);
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* PRIMARY */
+.base-button-primary {
+  background-color: white;
+  border: 1px solid var(--font-color);
+  color: var(--font-color);
+}
+
+.base-button-primary:hover {
+  background-color: #ededed;
+}
+
+/* SECONDARY */
+.base-button-secondary {
+  background-color: var(--font-color);
+  color: white;
+}
+
+.base-button-secondary:hover {
+  background-color: var(--font-color_light);
+}
+
+/* SUCCESS */
+/* DANGER */
+/* WARNING */
+/* INFO */

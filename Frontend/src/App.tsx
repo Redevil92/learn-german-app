@@ -1,13 +1,12 @@
-import { useState } from "react";
 import "./App.css";
 
-import HomePage from "./pages/HomePage/HomePage";
+import HomePage from "./pages/HomePage";
+import LoginSection from "./components/Authentication/LoginSection";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
+      <LoginSection></LoginSection>
       <HomePage></HomePage>
     </>
   );

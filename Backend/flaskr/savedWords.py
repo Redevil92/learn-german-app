@@ -9,26 +9,6 @@ from flaskr.models.wordTranslation import WordTranslation
 
 bp = Blueprint('savedWords', __name__)
 
-
-# def create_words(tuples):
-#     words = []
-#     for tuple in tuples:
-#         words.append(WordTranslation(*tuple).to_dict())
-#     return words
-
-# def get_words(word):
-#     rows = get_db().execute(
-#         'SELECT *'
-#         ' FROM german_english_dictionary'
-#         ' WHERE word LIKE ?'
-#         ' ORDER BY LENGTH(word) ASC '
-#         ' LIMIT 10 ',
-#         (word+'%',)
-#     ).fetchall()
-#     tuples = [tuple(row) for row in rows]
-#     return create_words(tuples)
-
-
 @bp.route('/savedWords/getAll', methods=['GET'])
 def get_saved_words():
     rows = get_db().execute(

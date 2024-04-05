@@ -1,7 +1,5 @@
 import axios from "axios";
 
-const config = {
+export default axios.create({
   baseURL: import.meta.env.VITE_BASE_PATH,
-};
-
-axios.create(config);
+});

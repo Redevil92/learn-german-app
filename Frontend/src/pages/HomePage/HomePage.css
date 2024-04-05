@@ -2,9 +2,9 @@
   align-items: center;
   display: flex;
   flex-direction: column;
-
+  padding: 20px;
   min-width: fit-content;
-  padding-top: 50px;
+  padding-top: 70px;
   position: relative;
   z-index: 1;
 }
@@ -38,4 +38,8 @@
 
 .words-list {
   min-width: var(--search-input-width);
+}
+
+.words-list-container {
+  margin-top: calc(var(--margin) * 1);
 }
