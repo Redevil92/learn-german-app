@@ -3,13 +3,31 @@ import BaseDialog from "../../shared/BaseDialog";
 import BaseInput from "../../shared/BaseInput";
 import BaseButton from "../../shared/BaseButton";
 import "./RegisterDialog.css";
+import { register } from "../../../api/authenticationApi";
 
 export default function RegisterDialog({ onClose }: { onClose: () => any }) {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [repeatPassword, setRepeatPassword] = useState<string>("");
 
-  const registerHandler = () => {};
+  const registerHandler = () => {
+    register(username, password);
+  };
+
+  const errorMessage = () => {
+    if (!username) {
+      return "Username is required";
+    }
+    if (!password) {
+      return "Password is required";
+    }
+    if (!repeatPassword) {
+      return "Repeat password is required";
+    }
+    if (password !== repeatPassword) {
+      return "Passwords do not match";
+    }
+  };
 
   return (
     <>
@@ -19,27 +37,34 @@ export default function RegisterDialog({ onClose }: { onClose: () => any }) {
           <div>
             <h2>Sign up</h2>
             <form onSubmit={registerHandler}>
-              <BaseInput
-                label="Username"
-                name="username"
-                type="text"
-                value={username}
-                onChange={(event) => setUsername(event.target.value)}
-              />
-              <BaseInput
-                label="Password"
-                name="password"
-                type="text"
-                value={password}
-                onChange={(event) => setPassword(event.target.value)}
-              />
-              <BaseInput
-                label="Repeat password"
-                name="Repeat password"
-                type="text"
-                value={repeatPassword}
-                onChange={(event) => setRepeatPassword(event.target.value)}
-              />
+              <div className="input-container">
+                <BaseInput
+                  label="Username"
+                  name="username"
+                  type="text"
+                  value={username}
+                  onChange={(event) => setUsername(event.target.value)}
+                />
+              </div>
+              <div className="input-container">
+                <BaseInput
+                  label="Password"
+                  name="password"
+                  type="password"
+                  value={password}
+                  onChange={(event) => setPassword(event.target.value)}
+                />
+              </div>
+              <div className="input-container">
+                <BaseInput
+                  label="Repeat password"
+                  name="Repeat password"
+                  type="password"
+                  value={repeatPassword}
+                  onChange={(event) => setRepeatPassword(event.target.value)}
+                />
+              </div>
+
               <div className="submit-button-container">
                 <BaseButton
                   type="submit"
@@ -52,6 +77,9 @@ export default function RegisterDialog({ onClose }: { onClose: () => any }) {
                   }
                   onClick={registerHandler}
                 />
+              </div>
+              <div>
+                <p className="error-message">{errorMessage()}</p>
               </div>
             </form>
           </div>

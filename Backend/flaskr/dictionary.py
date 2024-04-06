@@ -8,7 +8,7 @@ from flaskr.db import get_db
 
 from flaskr.models.wordTranslation import WordTranslation
 
-bp = Blueprint('dictionary', __name__)
+bp = Blueprint('dictionary', __name__, url_prefix='/dictionary')
 
 
 def create_words(tuples):
@@ -30,7 +30,7 @@ def get_words(word):
     return create_words(tuples)
 
 
-@bp.route('/dictionary/<string:word>', methods=['GET'])
+@bp.route('/<string:word>', methods=['GET'])
 def get_word(word):
     words = get_words(word)
     if not words:

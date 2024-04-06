@@ -19,7 +19,7 @@ export default function LoginSection() {
         />
         <div className="margin-left">
           <BaseButton
-            text="Sign in"
+            text="Sign up"
             variant={ButtonVariant.SECONDARY}
             onClick={() => setShowRegisterDialog(true)}
           />

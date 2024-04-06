@@ -2,3 +2,13 @@
   margin: var(--margin) 0px;
   margin-top: calc(var(--margin) * 2);
 }
+
+.input-container {
+  margin-top: calc(var(--margin) * 1);
+}
+
+.error-message {
+  color: var(--error-color);
+  font-size: var(--small-font-size);
+  margin-top: var(--margin);
+}

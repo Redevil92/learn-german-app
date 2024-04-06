@@ -7,9 +7,9 @@ from flaskr.db import get_db
 
 from flaskr.models.wordTranslation import WordTranslation
 
-bp = Blueprint('savedWords', __name__)
+bp = Blueprint('savedWords', __name__, url_prefix='/savedWords')
 
-@bp.route('/savedWords/getAll', methods=['GET'])
+@bp.route('/getAll', methods=['GET'])
 def get_saved_words():
     rows = get_db().execute(
         'SELECT *'
@@ -22,7 +22,7 @@ def get_saved_words():
     return jsonify(words)
 
 
-@bp.route('/savedWords/<int:id>', methods=['DELETE'])    
+@bp.route('/<int:id>', methods=['DELETE'])    
 def delete_saved_word(id):
     db = get_db()
     db.execute(
@@ -32,7 +32,7 @@ def delete_saved_word(id):
     db.commit()
     return jsonify({"message": "Word deleted."})
 
-@bp.route('/savedWords', methods=['POST'])
+@bp.route('/', methods=['POST'])
 def update_saved_word(id):
     word = request.json['word']
     word_in_detail = request.json['word_in_detail']
