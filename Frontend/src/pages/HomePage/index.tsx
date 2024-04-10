@@ -2,7 +2,6 @@ import React, { FormEvent, useState } from "react";
 import { getTraslations } from "../../api/dictionaryApi";
 import Word from "../../models/Word";
 import * as string from "../../utils/string";
-import { bestimmteArtikel } from "../../GermanGrammar/Articles";
 import WordTranslations from "../../components/WordTranslation";
 import "./HomePage.css";
 import { AxiosError } from "axios";

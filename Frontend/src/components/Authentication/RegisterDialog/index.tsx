@@ -2,7 +2,6 @@ import { useState } from "react";
 import BaseDialog from "../../shared/BaseDialog";
 import BaseInput from "../../shared/BaseInput";
 import BaseButton from "../../shared/BaseButton";
-import "./RegisterDialog.css";
 import { register } from "../../../api/authenticationApi";
 
 export default function RegisterDialog({ onClose }: { onClose: () => any }) {
@@ -37,7 +36,7 @@ export default function RegisterDialog({ onClose }: { onClose: () => any }) {
           <div>
             <h2>Sign up</h2>
             <form onSubmit={registerHandler}>
-              <div className="input-container">
+              <div className="mt-5">
                 <BaseInput
                   label="Username"
                   name="username"
@@ -46,7 +45,7 @@ export default function RegisterDialog({ onClose }: { onClose: () => any }) {
                   onChange={(event) => setUsername(event.target.value)}
                 />
               </div>
-              <div className="input-container">
+              <div className="mt-5">
                 <BaseInput
                   label="Password"
                   name="password"
@@ -55,7 +54,7 @@ export default function RegisterDialog({ onClose }: { onClose: () => any }) {
                   onChange={(event) => setPassword(event.target.value)}
                 />
               </div>
-              <div className="input-container">
+              <div className="mt-5">
                 <BaseInput
                   label="Repeat password"
                   name="Repeat password"
@@ -65,7 +64,7 @@ export default function RegisterDialog({ onClose }: { onClose: () => any }) {
                 />
               </div>
 
-              <div className="submit-button-container">
+              <div className="mt-10 mb-5">
                 <BaseButton
                   type="submit"
                   text="Sign up"
@@ -79,7 +78,9 @@ export default function RegisterDialog({ onClose }: { onClose: () => any }) {
                 />
               </div>
               <div>
-                <p className="error-message">{errorMessage()}</p>
+                <p className="mt-5 text-sm text-error-color">
+                  {errorMessage()}
+                </p>
               </div>
             </form>
           </div>

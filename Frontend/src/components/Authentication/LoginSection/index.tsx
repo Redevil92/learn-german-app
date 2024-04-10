@@ -1,4 +1,3 @@
-import "./LoginSection.css";
 import BaseButton from "../../shared/BaseButton";
 import LoginDialog from "../LoginDialog";
 import RegisterDialog from "../RegisterDialog";
@@ -11,13 +10,13 @@ export default function LoginSection() {
 
   return (
     <>
-      <div className="login-section-position">
+      <div className="absolute right-5 top-5 flex z-10">
         <BaseButton
           text="Log in"
           variant={ButtonVariant.PRIMARY}
           onClick={() => setShowLoginDialog(true)}
         />
-        <div className="margin-left">
+        <div className="ml-5">
           <BaseButton
             text="Sign up"
             variant={ButtonVariant.SECONDARY}

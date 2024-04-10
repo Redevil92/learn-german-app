@@ -49,7 +49,9 @@ export default function LoginDialog({ onClose }: { onClose: () => any }) {
                 />
               </div>
               <div>
-                <p className="error-message">{errorMessage}</p>
+                <p className="text-sm text-error-color mt-5 text-error-color">
+                  {errorMessage}
+                </p>
               </div>
             </form>
           </div>
