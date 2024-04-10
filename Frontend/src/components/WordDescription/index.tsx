@@ -25,8 +25,8 @@ export default function WordDescription({
     <>
       <div className="word-description">
         <div className="flex">
-          <h2 className="word-description-title">
-            <span className={`${bestimmteArtikel[genre ?? ""]}-article`}>
+          <h2 className="word-description-title text-3xl font-bold">
+            <span className={`${bestimmteArtikel[genre ?? ""]}-article `}>
               {bestimmteArtikel[genre ?? ""]}
             </span>{" "}
             {word}
@@ -34,7 +34,9 @@ export default function WordDescription({
           <span className="material-icons">star_outline</span>
         </div>
 
-        <div className="genre">{genre && <div>{genresLookup[genre]}</div>}</div>
+        <div className="italic">
+          {genre && <div>{genresLookup[genre]}</div>}
+        </div>
       </div>
     </>
   );

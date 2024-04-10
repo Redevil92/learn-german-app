@@ -15,7 +15,6 @@
 
 .search-word-form {
   position: relative;
-
   margin: 0 auto;
   margin-top: 40px;
 }
@@ -42,4 +41,5 @@
 
 .words-list-container {
   margin-top: calc(var(--margin) * 1);
+  max-width: var(--search-input-width);
 }
