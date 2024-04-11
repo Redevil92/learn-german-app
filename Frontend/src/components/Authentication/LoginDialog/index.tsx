@@ -19,9 +19,9 @@ export default function LoginDialog({ onClose }: { onClose: () => any }) {
         onClose={onClose}
         content={
           <div>
-            <h2>Log in</h2>
+            <h2 className="text-xl font-bold">Log in</h2>
             <form onSubmit={loginHandler}>
-              <div className="input-container">
+              <div className="mt-5">
                 <BaseInput
                   label="Username"
                   name="username"
@@ -30,7 +30,7 @@ export default function LoginDialog({ onClose }: { onClose: () => any }) {
                   onChange={(event) => setUsername(event.target.value)}
                 />
               </div>
-              <div className="input-container">
+              <div className="mt-5">
                 <BaseInput
                   label="Password"
                   name="password"
@@ -40,7 +40,7 @@ export default function LoginDialog({ onClose }: { onClose: () => any }) {
                 />
               </div>
 
-              <div className="submit-button-container">
+              <div className=" mt-10 mb-5">
                 <BaseButton
                   type="submit"
                   text="Log in"

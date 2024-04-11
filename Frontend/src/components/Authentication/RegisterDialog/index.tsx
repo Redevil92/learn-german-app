@@ -34,7 +34,7 @@ export default function RegisterDialog({ onClose }: { onClose: () => any }) {
         onClose={onClose}
         content={
           <div>
-            <h2>Sign up</h2>
+            <h2 className="text-xl  font-bold">Sign up</h2>
             <form onSubmit={registerHandler}>
               <div className="mt-5">
                 <BaseInput
