@@ -1,8 +1,7 @@
 from flask import (
-    Blueprint, jsonify, render_template, 
+    Blueprint, jsonify, request, 
 )
 
-from flaskr.auth import login_required
 from flaskr.db import get_db
 
 from flaskr.models.wordTranslation import WordTranslation

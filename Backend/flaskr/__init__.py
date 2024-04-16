@@ -26,9 +26,9 @@ def create_app(test_config=None):
         pass
 
     # a simple page that says hello
-    @app.route('/hello')
+    @app.route('/')
     def hello():
-        return 'Hello, World!'
+        return 'Hello, World!!!'
     
     app.config['UPLOAD_FOLDER'] = 'C:/coding/web-apps/learn-german-app/Backend/flaskr/static'
 
