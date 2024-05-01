@@ -22,7 +22,7 @@ Install the required dependencies for both frontend and backend:
 cd cd Frontend
 npm install  # Installs React, Vite, and other frontend dependencies
 cd ..\Backend\
-pip install -r backend/requirements.txt  # Installs Flask and other backend dependencies
+pip install -r requirements.txt  # Installs Flask and other backend dependencies
 ```
 
 Optional: Create a virtual environment for Python to isolate project dependencies:
