@@ -2,7 +2,7 @@ from flask import ( Blueprint, flash, g, redirect, render_template, request, url
 import os
 from werkzeug.exceptions import abort
 import pandas as pd
-from flaskr.db import get_db
+from Backend.flaskr.db.db import get_db
 
 
 bp = Blueprint('dbUploader', __name__)

@@ -2,7 +2,7 @@ from flask import (
     Blueprint, jsonify, request, 
 )
 
-from flaskr.db import get_db
+from Backend.flaskr.db.db import get_db
 
 from flaskr.models.wordTranslation import WordTranslation
 

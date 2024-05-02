@@ -32,7 +32,7 @@ def create_app(test_config=None):
     
     app.config['UPLOAD_FOLDER'] = 'C:/coding/web-apps/learn-german-app/Backend/flaskr/static'
 
-    from . import db
+    from .db import db
     db.init_app(app)
 
     from . import auth
