@@ -6,14 +6,13 @@ export default function BaseInput({
   type,
   variant,
   disabled = false,
-  onClick,
+  onClick = () => {},
 }: {
   text: string;
   type?: "submit" | "reset" | "button" | undefined;
   disabled?: boolean;
   variant?: ButtonVariant;
-
-  onClick: () => void;
+  onClick?: () => void;
 }) {
   return (
     <>

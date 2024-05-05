@@ -9,7 +9,8 @@ export default function RegisterDialog({ onClose }: { onClose: () => any }) {
   const [password, setPassword] = useState<string>("");
   const [repeatPassword, setRepeatPassword] = useState<string>("");
 
-  const registerHandler = () => {
+  const registerHandler = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     register(username, password);
   };
 
@@ -74,7 +75,7 @@ export default function RegisterDialog({ onClose }: { onClose: () => any }) {
                     !repeatPassword ||
                     password !== repeatPassword
                   }
-                  onClick={registerHandler}
+                  
                 />
               </div>
               <div>
