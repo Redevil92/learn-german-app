@@ -15,6 +15,8 @@ from routes.dictionary import blp as DictionaryBlueprint
 
 from models import DictionaryItemModel
 
+from helpers.db_upload import upload_verbs_database
+
 
 def create_app(db_url=None):
     app = Flask(__name__)
@@ -96,6 +98,8 @@ def create_app(db_url=None):
             401,
         )
 
+    
+
     api.register_blueprint(UserBlueprint)
     api.register_blueprint(DictionaryBlueprint)
     # api.register_blueprint(ItemBlueprint)
@@ -103,5 +107,10 @@ def create_app(db_url=None):
     # api.register_blueprint(TagBlueprint)
 
     CORS(app, support_credentials=True)
+
+    @app.route('/upload', methods=['GET'])
+    def get_words():
+        upload_verbs_database(db)
+    
 
     return app

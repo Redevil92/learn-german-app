@@ -9,7 +9,8 @@ export default function LoginDialog({ onClose }: { onClose: () => any }) {
   const [password, setPassword] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
 
-  const loginHandler = async () => {
+  const loginHandler = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     await login(username, password);
   };
 
@@ -45,7 +46,6 @@ export default function LoginDialog({ onClose }: { onClose: () => any }) {
                   type="submit"
                   text="Log in"
                   disabled={!username || !password}
-                  onClick={loginHandler}
                 />
               </div>
               <div>

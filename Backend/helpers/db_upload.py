@@ -1,5 +1,54 @@
+from flask_sqlalchemy import SQLAlchemy
+from models import VerbModel
+from models import DictionaryItemModel
 
-def upload_databse(db, file_path):
+
+def upload_verbs_database(db:SQLAlchemy):
+    print("@@@ STARTING @@@@")
+    
+    db.create_all()
+    file_path = '/Users/stefanobadalucco/Coding/Web/learn-german-app/Backend/static/verbs.csv'
+    database_file = open(file_path, 'r', encoding='utf-8')
+    count = 0
+    line = database_file.readline()
+
+    while True:
+        count += 1
+    
+        # Get next line from file
+        line = database_file.readline()
+
+        if line == '**END**':
+            break
+    
+        line_splitted = line.split(',')
+        print("verb", line)
+
+        record = VerbModel( 
+            infinitive = line_splitted[0],
+            praesens_ich = line_splitted[1],
+            praesens_du = line_splitted[2],
+            praesens_er = line_splitted[3],
+            praeteritum_ich = line_splitted[4],
+            partizip_II = line_splitted[5],
+            konjunktiv_II_ich = line_splitted[6],
+            imperativ_singular  = line_splitted[7],
+            imperativ_plural = line_splitted[8],
+            hilfsverb  = line_splitted[9])
+        db.session.add(record)
+
+
+
+        if count % 1000 == 0:
+            print("Count", count)
+    
+    print("Data Saved Successfully, commiting to the database")
+    db.session.commit()
+    database_file.close()
+
+   
+
+def upload_words_database(db:SQLAlchemy, file_path:str):
     db.create_all()
     #file_path = '/Users/stefanobadalucco/Downloads/end/static/de-en.txt'
     database_file = open(file_path, 'r', encoding='utf-8')

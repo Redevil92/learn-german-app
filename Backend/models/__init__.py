@@ -4,3 +4,4 @@ from models.tag import TagModel
 from models.store import StoreModel
 from models.item_tags import ItemsTags
 from models.dictionary_item import DictionaryItemModel
+from models.verb import VerbModel
