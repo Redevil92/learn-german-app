@@ -8,6 +8,7 @@ from db import db
 from blocklist import BLOCKLIST
 
 from routes.user import blp as UserBlueprint
+from routes.verb import blp as VerbBlueprint
 from routes.item import blp as ItemBlueprint
 from routes.store import blp as StoreBlueprint
 from routes.tag import blp as TagBlueprint
@@ -102,15 +103,16 @@ def create_app(db_url=None):
 
     api.register_blueprint(UserBlueprint)
     api.register_blueprint(DictionaryBlueprint)
+    api.register_blueprint(VerbBlueprint)
     # api.register_blueprint(ItemBlueprint)
     # api.register_blueprint(StoreBlueprint)
     # api.register_blueprint(TagBlueprint)
 
     CORS(app, support_credentials=True)
 
-    @app.route('/upload', methods=['GET'])
-    def get_words():
-        upload_verbs_database(db)
+    # @app.route('/upload', methods=['GET'])
+    # def get_words():
+    #     upload_verbs_database(db)
     
 
     return app

@@ -1,8 +1,6 @@
 from flask_smorest import Blueprint, abort
 from sqlalchemy.sql.expression import func
-import json
 
-from db import db
 from models import DictionaryItemModel
 from schemas import DictionaryItemSchema
 

@@ -1,13 +1,12 @@
 import React, { FormEvent, useState } from "react";
-import { getTraslations } from "../../api/dictionaryApi";
-import Word from "../../models/Word";
-import * as string from "../../utils/string";
-import WordTranslations from "../../components/WordTranslation";
-import "./HomePage.css";
 import { AxiosError } from "axios";
+import { getTraslations } from "../../api/dictionaryApi";
+
+import Word from "../../models/Word";
+import SearchResult from "../../components/SearchResult/SearchResult";
+
 import logo from "@/assets/logo/logo.svg";
-import { GenreEnum } from "../../models/GenreEnum";
-import WordDescription from "../../components/WordDescription";
+import "./HomePage.css";
 
 export default function HomePage() {
   const [search, setSearch] = useState<string>("");
@@ -33,21 +32,6 @@ export default function HomePage() {
     setSearch(e.target.value);
   }
 
-  const firstResult = words && words[0];
-
-  const wordTraslations =
-    firstResult && words.filter((word) => word.word === firstResult.word);
-
-  const wordGenre =
-    firstResult &&
-    (string.getFirstValueInCurlyBrackets(
-      firstResult.word_in_detail
-    ) as GenreEnum);
-
-  const wordTraslationsItems = wordTraslations?.map((word, index) => (
-    <WordTranslations key={index} wordTranslation={word} />
-  ));
-
   return (
     <>
       <div className="content-home-page">
@@ -62,14 +46,9 @@ export default function HomePage() {
           <span className="material-icons search-icon">search</span>
         </form>
         <div className="words-list-container">
-          {firstResult && (
+          {words && (
             <div className="words-list px-5">
-              <WordDescription
-                genre={wordGenre}
-                word={firstResult.word}
-              ></WordDescription>
-
-              {wordTraslationsItems}
+              <SearchResult words={words} />
             </div>
           )}
           {wordNotFound && <p>Word not found</p>}

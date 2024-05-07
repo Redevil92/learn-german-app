@@ -5,6 +5,7 @@ export const bestimmteArtikel: { [genre: string]: string } = {
   f: "die",
   n: "das",
   p: "die",
+  pl: "die"
 };
 
 export const getBestimmteArtikel = (genre: string) => {

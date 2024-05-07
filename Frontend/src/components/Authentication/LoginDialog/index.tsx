@@ -1,7 +1,7 @@
 import { useState } from "react";
-import BaseDialog from "../../shared/BaseDialog";
-import BaseInput from "../../shared/BaseInput";
-import BaseButton from "../../shared/BaseButton";
+import BaseDialog from "../../Shared/BaseDialog";
+import BaseInput from "../../Shared/BaseInput";
+import BaseButton from "../../Shared/BaseButton";
 import { login } from "../../../api/authenticationApi";
 
 export default function LoginDialog({ onClose }: { onClose: () => any }) {

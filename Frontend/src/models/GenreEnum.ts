@@ -1,6 +1,10 @@
 export enum GenreEnum {
-  M = "m",
-  F = "f",
-  N = "n",
-  L = "p",
+  Masculine = "m",
+  Feminine = "f",
+  Neutral = "n",
+  Plural = "p",
+  Plural2 = "pl",
+  Adjective = "adj",
+  Adverb = "adv",
+  Verb = "v",
 }

@@ -1,8 +1,8 @@
-import BaseButton from "../../shared/BaseButton";
+import BaseButton from "../../Shared/BaseButton";
 import LoginDialog from "../LoginDialog";
 import RegisterDialog from "../RegisterDialog";
 import { useState } from "react";
-import { ButtonVariant } from "../../shared/BaseButton/ButtonVariant";
+import { ButtonVariant } from "../../Shared/BaseButton/ButtonVariant";
 
 export default function LoginSection() {
   const [showLoginDialog, setShowLoginDialog] = useState<boolean>(false);

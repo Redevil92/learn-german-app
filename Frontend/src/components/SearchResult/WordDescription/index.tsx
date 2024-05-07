@@ -1,4 +1,4 @@
-import { bestimmteArtikel } from "../../GermanGrammar/Articles";
+import { bestimmteArtikel } from "../../../GermanGrammar/Articles";
 import "./WordDescription.css";
 
 export default function WordDescription({
@@ -13,8 +13,10 @@ export default function WordDescription({
     f: "Substantiv, Feminin",
     n: "Substantiv, Neutrum",
     p: "Substantiv, Plural",
+    pl: "Substantiv, Plural",
     adj: "Adjektiv",
     adv: "Adverb",
+    v: "Verb",
   };
 
   //   const isWordSaved = useSavedWordsStore((state: any) =>
