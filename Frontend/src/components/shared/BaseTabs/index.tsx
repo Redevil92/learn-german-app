@@ -20,12 +20,14 @@ export default function BaseTabs({
         {tabs.map((tab, index) => (
           <div
             key={index}
-            className={`p-1 cursor-pointer px-2 rounded-lg hover:bg-slate-100 ${
+            className={`p-1 cursor-pointer px-2 rounded-lg hover:bg-slate-100 flex items-center ${
               tab.selected ? "!bg-white rounded-lg" : ""
             } ${tab.disabled ? "disabled" : ""}`}
             onClick={() => tabClickHandler(tab)}
           >
-            {/* <span className="material-icons">{tab.materialIcon}</span> */}
+            <span className="mr-1 material-icons !text-sm">
+              {tab.materialIcon}
+            </span>
             {tab.textToDisplay}
           </div>
         ))}

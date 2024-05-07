@@ -5,12 +5,42 @@ import { GenreEnum } from "../../models/GenreEnum";
 import WordDescription from "../../components/SearchResult/WordDescription";
 import { Tab } from "../Shared/BaseTabs/Tab";
 import BaseTabs from "../Shared/BaseTabs";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import VerbKonjugation from "./VerbKonjugation";
+import { getVerb } from "../../api/verbsApi";
+import Verb from "../../models/Verb";
 
 export default function SearchResult(props: { words: Word[] }) {
-  const [tabSelected, setTabSelected] = useState<string>("Übersetzung");
+  const verbTabs: Tab[] = [
+    {
+      textToDisplay: "Übersetzung",
+      id: "Übersetzung",
+      materialIcon: "translate",
+      selected: true,
+      disabled: false,
+    },
+    {
+      textToDisplay: "Konjugation",
+      id: "Konjugation",
+      materialIcon: "abc",
+      selected: false,
+      disabled: false,
+    },
+  ];
 
   const firstResult = props.words && props.words[0];
+
+  const [verb, setVerb] = useState<Verb>();
+
+  useEffect(() => {
+    getVerb(firstResult?.word).then((result) => {
+      setVerb(result);
+    });
+  }, [firstResult]);
+
+  const [tabs, setTabs] = useState<Tab[]>(verbTabs);
+
+  const tabSelectedId = tabs.find((tab) => tab.selected)?.id;
 
   const wordTraslations =
     firstResult && props.words.filter((word) => word.word === firstResult.word);
@@ -33,24 +63,8 @@ export default function SearchResult(props: { words: Word[] }) {
         tab.selected = false;
       }
     });
+    setTabs([...verbTabs]);
   };
-
-  const verbTabs: Tab[] = [
-    {
-      textToDisplay: "Übersetzung",
-      id: "Übersetzung",
-      materialIcon: "play_arrow",
-      selected: true,
-      disabled: false,
-    },
-    {
-      textToDisplay: "Konjugation",
-      id: "Konjugation",
-      materialIcon: "play_arrow",
-      selected: false,
-      disabled: false,
-    },
-  ];
 
   return (
     <>
@@ -62,9 +76,16 @@ export default function SearchResult(props: { words: Word[] }) {
           ></WordDescription>
 
           {wordGenre === GenreEnum.Verb ? (
-            <BaseTabs tabs={verbTabs} onTabSelect={onTabSelect}></BaseTabs>
+            <div className="mb-5">
+              <BaseTabs tabs={tabs} onTabSelect={onTabSelect}></BaseTabs>
+            </div>
           ) : null}
-          {wordTraslationsItems}
+
+          {tabSelectedId === "Konjugation" ? (
+            <VerbKonjugation verb={verb} />
+          ) : (
+            wordTraslationsItems
+          )}
         </div>
       )}
     </>
