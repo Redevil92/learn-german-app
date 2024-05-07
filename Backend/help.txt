@@ -3,9 +3,7 @@
 ## init db (will reset the current db)
 flask --app flaskr init-db
 
-flask --app flaskr run --debug
-
-
+flask run --host 0.0.0.0 
 
 # with docker, cd Backend
 
@@ -18,3 +16,8 @@ docker run -dp 5000:5000 learn-german-app
 ## running container with volumes for hot reloading (debug mode needs to be activated) 
 ## "/c/coding/web-apps/learn-german-app/Backend" needs to be replaced with your app path
 docker run -dp 5000:5000 -w /app -v "/c/coding/web-apps/learn-german-app/Backend:/app" learn-german-app
+
+
+## Initialize venv
+python3 -m venv german_app_env
+source german_app_env/bin/activate

@@ -1,8 +1,9 @@
-click==8.1.7
-Flask==3.0.2
-Flask_Cors==4.0.0
-pandas==2.2.1
-pytest==8.1.1
-Werkzeug==3.0.1
+Flask-JWT-Extended
+Flask-Smorest
+Flask-SQLAlchemy
+passlib
+marshmallow
 python-dotenv
-# flask-smorest
+gunicorn
+Flask-Migrate
+Flask_Cors

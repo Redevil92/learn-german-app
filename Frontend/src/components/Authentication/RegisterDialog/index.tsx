@@ -1,7 +1,7 @@
 import { useState } from "react";
-import BaseDialog from "../../shared/BaseDialog";
-import BaseInput from "../../shared/BaseInput";
-import BaseButton from "../../shared/BaseButton";
+import BaseDialog from "../../Shared/BaseDialog";
+import BaseInput from "../../Shared/BaseInput";
+import BaseButton from "../../Shared/BaseButton";
 import { register } from "../../../api/authenticationApi";
 
 export default function RegisterDialog({ onClose }: { onClose: () => any }) {
@@ -9,7 +9,8 @@ export default function RegisterDialog({ onClose }: { onClose: () => any }) {
   const [password, setPassword] = useState<string>("");
   const [repeatPassword, setRepeatPassword] = useState<string>("");
 
-  const registerHandler = () => {
+  const registerHandler = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     register(username, password);
   };
 
@@ -74,7 +75,6 @@ export default function RegisterDialog({ onClose }: { onClose: () => any }) {
                     !repeatPassword ||
                     password !== repeatPassword
                   }
-                  onClick={registerHandler}
                 />
               </div>
               <div>
