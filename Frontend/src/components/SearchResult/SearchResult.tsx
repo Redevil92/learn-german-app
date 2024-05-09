@@ -75,7 +75,8 @@ export default function SearchResult(props: { words: Word[] }) {
             word={firstResult.word}
           ></WordDescription>
 
-          {wordGenre === GenreEnum.Verb ? (
+          {wordGenre === GenreEnum.Verb ||
+          wordGenre === GenreEnum.VerbIntransitiv ? (
             <div className="mb-5">
               <BaseTabs tabs={tabs} onTabSelect={onTabSelect}></BaseTabs>
             </div>

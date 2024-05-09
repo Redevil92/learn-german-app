@@ -17,6 +17,7 @@ export default function WordDescription({
     adj: "Adjektiv",
     adv: "Adverb",
     v: "Verb",
+    vi: "Verb, intransitiv",
   };
 
   //   const isWordSaved = useSavedWordsStore((state: any) =>
