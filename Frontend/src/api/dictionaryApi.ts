@@ -6,3 +6,9 @@ export const getTraslations = async (word: string): Promise<Word[]> => {
 
   return response.data;
 };
+
+export const getSuggestions = async (word: string): Promise<Word[]> => {
+  const response = await axios.get<Word[]>(`/dictionary/suggestions/${word}`);
+
+  return response.data;
+}

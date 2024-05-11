@@ -1,5 +1,7 @@
 from flask_smorest import Blueprint, abort
 from sqlalchemy.sql.expression import func
+from fuzzywuzzy.fuzz import ratio
+
 
 from models import DictionaryItemModel
 from schemas import DictionaryItemSchema
@@ -17,6 +19,28 @@ def get_words(word:str):
     
     if len(words) == 0:
         abort(404, message="No words found for that definition.")
+
+        
+    return (words)
+
+
+@blp.route('/dictionary/suggestions/<string:word>', methods=['GET'])
+@blp.response(200, DictionaryItemSchema(many=True))
+def get_words(word:str):
+    threshold = 80
+
+    #.filter(DictionaryItemModel.word.ilike(f'%{word}%')) \
+    #.filter(fuzzy.match(func.lower(DictionaryItemModel.word), f"{word.lower()}%", threshold=threshold)) \
+
+    words = DictionaryItemModel.query \
+        .filter(DictionaryItemModel.word.ilike(f'%{word}%')) \
+        .distinct(DictionaryItemModel.word) \
+        .order_by(func.length(DictionaryItemModel.word)) \
+        .limit(20) \
+        .all()
+    
+    if len(words) == 0:
+        []
 
         
     return (words)

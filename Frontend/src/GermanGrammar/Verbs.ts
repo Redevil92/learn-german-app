@@ -143,15 +143,13 @@ export const getPlusquamperfekt = (verb: Verb): VerbZeitform => {
 }
 
 export const getFuturII = (verb: Verb): VerbZeitform => {
-    const hilfsverbPraesens = getHilfsverbPraesens(verb);
-
     return {
         zeitform: "Futur II",
-        ich: hilfsverbPraesens.ich + " " + verb.partizip_II + " " + verb.hilfsverb,
-        du: hilfsverbPraesens.du + " " + verb.partizip_II + " " + verb.hilfsverb,
-        er: hilfsverbPraesens.er + " " + verb.partizip_II + " " + verb.hilfsverb,
-        wir: hilfsverbPraesens.wir + " " + verb.partizip_II + " " + verb.hilfsverb,
-        ihr: hilfsverbPraesens.ihr + " " + verb.partizip_II + " " + verb.hilfsverb,
-        sie: hilfsverbPraesens.sie + " " + verb.partizip_II + " " + verb.hilfsverb,
+        ich: werdenPraesens.ich + " " + verb.partizip_II + " " + verb.hilfsverb,
+        du: werdenPraesens.du + " " + verb.partizip_II + " " + verb.hilfsverb,
+        er: werdenPraesens.er + " " + verb.partizip_II + " " + verb.hilfsverb,
+        wir: werdenPraesens.wir + " " + verb.partizip_II + " " + verb.hilfsverb,
+        ihr: werdenPraesens.ihr + " " + verb.partizip_II + " " + verb.hilfsverb,
+        sie: werdenPraesens.sie + " " + verb.partizip_II + " " + verb.hilfsverb,
     };
 }

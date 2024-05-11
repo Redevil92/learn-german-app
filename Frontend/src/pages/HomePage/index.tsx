@@ -1,6 +1,6 @@
 import React, { FormEvent, useState } from "react";
 import { AxiosError } from "axios";
-import { getTraslations } from "../../api/dictionaryApi";
+import { getSuggestions, getTraslations } from "../../api/dictionaryApi";
 
 import Word from "../../models/Word";
 import SearchResult from "../../components/SearchResult/SearchResult";
@@ -12,6 +12,7 @@ export default function HomePage() {
   const [search, setSearch] = useState<string>("");
   const [words, setWords] = useState<Word[]>();
   const [wordNotFound, setWordNotFound] = useState<boolean>(false);
+  const [suggestions, setSuggestions] = useState<Word[]>();
 
   const handleSearch = async (event: FormEvent) => {
     event.preventDefault();
@@ -30,6 +31,13 @@ export default function HomePage() {
 
   function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
     setSearch(e.target.value);
+    if (e.target.value) {
+      getSuggestions(e.target.value).then((suggestions) => {
+        setSuggestions(suggestions);
+      });
+    } else {
+      setSuggestions([]);
+    }
   }
 
   return (
@@ -44,6 +52,10 @@ export default function HomePage() {
             onChange={handleInputChange}
           />
           <span className="material-icons search-icon">search</span>
+          <div>
+            {suggestions &&
+              suggestions.map((suggestion) => <div>{suggestion.word}</div>)}
+          </div>
         </form>
         <div className="words-list-container">
           {words && (
