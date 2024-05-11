@@ -1,14 +1,17 @@
-import Word from "../../models/Word";
+import { useEffect, useState } from "react";
+
 import * as string from "../../utils/string";
 import WordTranslations from "../../components/SearchResult/WordTranslation";
-import { GenreEnum } from "../../models/GenreEnum";
 import WordDescription from "../../components/SearchResult/WordDescription";
-import { Tab } from "../Shared/BaseTabs/Tab";
 import BaseTabs from "../Shared/BaseTabs";
-import { useEffect, useState } from "react";
+
+import Verb from "../../models/Verb";
+import { GenreEnum } from "../../models/GenreEnum";
+import Word from "../../models/Word";
+import { Tab } from "../Shared/BaseTabs/Tab";
+
 import VerbKonjugation from "./VerbKonjugation";
 import { getVerb } from "../../api/verbsApi";
-import Verb from "../../models/Verb";
 
 export default function SearchResult(props: { words: Word[] }) {
   const verbTabs: Tab[] = [
@@ -37,6 +40,10 @@ export default function SearchResult(props: { words: Word[] }) {
       setVerb(result);
     });
   }, [firstResult]);
+
+  useEffect(() => {
+    onTabSelect(verbTabs.find((tab) => tab.id === "Übersetzung") as Tab);
+  }, [props.words]);
 
   const [tabs, setTabs] = useState<Tab[]>(verbTabs);
 
@@ -82,11 +89,9 @@ export default function SearchResult(props: { words: Word[] }) {
             </div>
           ) : null}
 
-          {tabSelectedId === "Konjugation" ? (
-            <VerbKonjugation verb={verb} />
-          ) : (
-            wordTraslationsItems
-          )}
+          {tabSelectedId === "Konjugation"
+            ? verb && <VerbKonjugation verb={verb} />
+            : wordTraslationsItems}
         </div>
       )}
     </>

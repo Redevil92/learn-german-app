@@ -21,7 +21,7 @@
 
 .search-word-input {
   border: 1px solid #cad3db;
-  width: var(--search-input-width);
+  width: var(--search-input-width_desktop);
   border-radius: 9999px;
   padding: 15px 20px 15px 50px;
   outline: none;
@@ -36,10 +36,10 @@
 }
 
 .words-list {
-  min-width: var(--search-input-width);
+  min-width: var(--search-input-width_desktop);
 }
 
 .words-list-container {
   margin-top: calc(var(--margin) * 1);
-  max-width: var(--search-input-width);
+  max-width: var(--search-input-width_desktop);
 }

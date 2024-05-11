@@ -1,5 +1,3 @@
-import { GenreEnum } from "../models/GenreEnum";
-
 export const bestimmteArtikel: { [genre: string]: string } = {
   m: "der",
   f: "die",

@@ -17,7 +17,7 @@
 
   --primary-color: #206a5d;
   --primary-color_light: #206a5d;
-  --font-color: #1f1f1f;
+  --font-color: #363636;
   --font-color_light: #5e5e5e;
   --box-shadow: 0 1px 6px 0 var(--color-box-shadow);
   --color-box-shadow: #20212447;
@@ -26,7 +26,9 @@
   --semi-bold-font-weight: 500;
   --normal-font-weight: 400;
 
-  --search-input-width: 600px;
+  --search-input-width_mobile: 600px;
+  --search-input-width_tablet: 700px;
+  --search-input-width_desktop: 800px;
 
   --small-font-size: 12px;
   --medium-font-size: 14px;

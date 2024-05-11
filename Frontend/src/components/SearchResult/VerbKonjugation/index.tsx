@@ -1,45 +1,37 @@
+import {
+  getPraesens,
+  getPraeteritum,
+  getFuturI,
+  getPerfekt,
+  getPlusquamperfekt,
+  getFuturII,
+} from "../../../GermanGrammar/Verbs";
 import Verb from "../../../models/Verb";
+import VerbTable from "../VerbTable";
 
-export default function VerbKonjugation({ verb }: { verb?: Verb }) {
+export default function VerbKonjugation({ verb }: { verb: Verb }) {
   return (
     <>
-      Model:{" "}
-      <span className="mr-4 text-primary-color font-semibold">
-        {verb?.infinitive}
-      </span>{" "}
+      Partizip Perfekt:{" "}
+      <span className="mr-10 text-primary-color font-semibold">
+        {verb?.partizip_II}
+      </span>
       Auxiliary:{" "}
       <span className="mr-4 text-primary-color font-semibold">
         {verb?.hilfsverb}
       </span>
       <div className="mt-5 ">
-        <div className="p-3 bg-primary-color-background text-medium ">
-          <div className="mb-5 font-semibold flex justify-center">Präsens</div>
-          <div className="mb-2">
-            ich{" "}
-            <span className="mr-4 text-primary-color font-semibold">
-              {verb?.praesens_ich}
-            </span>
-          </div>
+        <div className="mb-2 text-primary-color text-center font-semibold">
+          INDIKATIV
+        </div>
 
-          <div className="mb-2">
-            du{" "}
-            <span className="mr-4 text-primary-color font-semibold">
-              {verb?.praesens_du}
-            </span>
-          </div>
-
-          <div className="mb-2">
-            er/sie/es{" "}
-            <span className="mr-4 text-primary-color font-semibold">
-              {verb?.praesens_er}
-            </span>
-          </div>
-
-          <div className="mb-2">wir</div>
-
-          <div className="mb-2">ihr</div>
-
-          <div className="">sie/Sie</div>
+        <div className="inline-grid grid-cols-3 gap-4">
+          <VerbTable verb={getPraesens(verb)} />
+          <VerbTable verb={getPraeteritum(verb)} />
+          <VerbTable verb={getFuturI(verb)} />
+          <VerbTable verb={getPerfekt(verb)} />
+          <VerbTable verb={getPlusquamperfekt(verb)} />
+          <VerbTable verb={getFuturII(verb)} />
         </div>
       </div>
     </>

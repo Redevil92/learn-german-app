@@ -3,7 +3,7 @@ import VerbZeitform from "../../../models/VerbZeitform";
 export default function VerbZeitformTable({ verb }: { verb: VerbZeitform }) {
   return (
     <>
-      <div className="p-3 bg-primary-color-background text-medium ">
+      <div className="p-3 bg-primary-color-background text-base rounded-lg">
         <div className="mb-5 font-semibold flex justify-center">
           {verb.zeitform}
         </div>
