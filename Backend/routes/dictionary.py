@@ -36,7 +36,7 @@ def get_words(word:str):
         .filter(DictionaryItemModel.word.ilike(f'%{word}%')) \
         .distinct(DictionaryItemModel.word) \
         .order_by(func.length(DictionaryItemModel.word)) \
-        .limit(20) \
+        .limit(10) \
         .all()
     
     if len(words) == 0:

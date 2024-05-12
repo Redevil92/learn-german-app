@@ -7,3 +7,6 @@ python-dotenv
 gunicorn
 Flask-Migrate
 Flask_Cors
+fuzzywuzzy
+python-Levenshtein
+sqlalchemy_utils
