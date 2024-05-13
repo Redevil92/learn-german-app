@@ -9,6 +9,8 @@ import logo from "@/assets/logo/logo.svg";
 import "./HomePage.css";
 import SearchSuggestion from "../../components/SearchInputWithSuggestions/SearchSuggestion";
 
+import { useOutsideClick } from "../../hooks/useOutsideClick";
+
 export default function HomePage() {
   const [search, setSearch] = useState<string>("");
   const [words, setWords] = useState<Word[]>();
@@ -58,18 +60,19 @@ export default function HomePage() {
     }
   }
 
+  const ref = useOutsideClick(resetSuggestions);
+
   return (
     <>
       <div className="content-home-page">
         <img src={logo} className="home-page-logo" alt="Logo" />
         <form className="search-word-form" onSubmit={onSubmit}>
-          <div className="search-word-input rounded-3xl">
+          <div ref={ref} className="search-word-input rounded-3xl">
             <input
               type="text"
               className="outline-none w-[100%]"
               placeholder="Search a word in German..."
               onChange={handleInputChange}
-              onBlur={resetSuggestions}
             />
             <span className="material-icons search-icon">search</span>
 
