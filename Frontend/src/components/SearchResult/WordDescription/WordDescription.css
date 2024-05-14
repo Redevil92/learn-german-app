@@ -6,16 +6,21 @@
   margin-bottom: 0px;
 }
 
-.das-article {
+.das-article, .n-article{
   color: var(--neuter-color);
 }
 
-.der-article {
+.der-article, .m-article{
   color: var(--masculine-color);
 }
 
-.die-article {
+.die-article, .f-article{
   color: var(--feminine-color);
+}
+
+.pl-article{
+  color: var(--plural-color);
+
 }
 
 .genre {

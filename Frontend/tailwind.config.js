@@ -15,7 +15,13 @@ export default {
         "masculin-color": "#4c8ac3",
         "feminine-color": "#c34c4c",
       },
+      dimensions: {
+        "search-input_mobile": "600px",
+        "search-input_mobile": "700px",
+        "search-input_mobile": "800px",
+      },
       fontSize: {
+        xs: "10px",
         sm: "12px",
         base: "14px",
         lg: "17px",

@@ -10,7 +10,7 @@ import { GenreEnum } from "../../models/GenreEnum";
 import Word from "../../models/Word";
 import { Tab } from "../Shared/BaseTabs/Tab";
 
-import VerbKonjugation from "./VerbKonjugation";
+import VerbConjugation from "./VerbConjugation";
 import { getVerb } from "../../api/verbsApi";
 
 export default function SearchResult(props: { words: Word[] }) {
@@ -90,7 +90,7 @@ export default function SearchResult(props: { words: Word[] }) {
           ) : null}
 
           {tabSelectedId === "Konjugation"
-            ? verb && <VerbKonjugation verb={verb} />
+            ? verb && <VerbConjugation verb={verb} />
             : wordTraslationsItems}
         </div>
       )}

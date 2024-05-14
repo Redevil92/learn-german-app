@@ -1,0 +1,18 @@
+export const genresLookup: { [genre: string]: string } = {
+    m: "Substantiv, Maskulin",
+    f: "Substantiv, Feminin",
+    n: "Substantiv, Neutrum",
+    p: "Substantiv, Plural",
+    pl: "Substantiv, Plural",
+    adj: "Adjektiv",
+    adv: "Adverb",
+    v: "Verb",
+    vi: "Verb, intransitiv",
+    "prp; +Dat.": "Präposition, mit Dativ",
+    "prp; +Akk.": "Präposition, mit Akkusativ",
+    "pron interrog": "Interrogativpronomen",
+    conj: "Konjunktion",
+    interj: "Interjektion",
+    art: "Artikel",
+    pron: "Pronomen",
+  };
