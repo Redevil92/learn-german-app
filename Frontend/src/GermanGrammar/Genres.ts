@@ -8,6 +8,7 @@ export const genresLookup: { [genre: string]: string } = {
     adv: "Adverb",
     v: "Verb",
     vi: "Verb, intransitiv",
+    vt: "Verb, transitiv",
     "prp; +Dat.": "Präposition, mit Dativ",
     "prp; +Akk.": "Präposition, mit Akkusativ",
     "pron interrog": "Interrogativpronomen",

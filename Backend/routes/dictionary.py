@@ -27,7 +27,7 @@ def get_words(word:str):
 @blp.route('/dictionary/suggestions/<string:word>', methods=['GET'])
 @blp.response(200, DictionaryItemSchema(many=True))
 def get_words(word:str):
-    threshold = 80
+    #threshold = 80
 
     #.filter(DictionaryItemModel.word.ilike(f'%{word}%')) \
     #.filter(fuzzy.match(func.lower(DictionaryItemModel.word), f"{word.lower()}%", threshold=threshold)) \
@@ -41,6 +41,25 @@ def get_words(word:str):
     
     if len(words) == 0:
         []
-
         
     return (words)
+
+
+@blp.route('/dictionary/word_by_id/<string:word_id>', methods=['GET'])
+@blp.response(200, DictionaryItemSchema(many=True))
+def get_word_by_id(word_id:str):
+    word = DictionaryItemModel.query \
+        .filter(DictionaryItemModel.id == word_id) \
+        .first()
+
+    additional_words = DictionaryItemModel.query \
+        .filter(DictionaryItemModel.word == word.word) \
+        .limit(9) \
+        .all()
+    
+    word = [word] + additional_words
+    
+    if word is None:
+        abort(404, message="No words found for that definition.")
+        
+    return (word)

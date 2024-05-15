@@ -57,7 +57,6 @@ const getVerbRoot = (verb: Verb): string => {
 }
 
 const getHilfsverbPraesens = (verb: Verb): VerbZeitform => {
-    console.log(verb.hilfsverb.trim() === "haben", verb.hilfsverb, 'haben');
     if (verb.hilfsverb.trim() === "haben") {
         return habenPraesens;
     } else {
@@ -89,15 +88,21 @@ export const getPraesens = (verb: Verb): VerbZeitform => {
 
 export const getPraeteritum = (verb: Verb): VerbZeitform => {
     const root = getVerbRoot(verb);
+    if(verb.infinitive === 'sein') {
+        return seinPraeteritum;
+    }
+
+    const weakVerb = root.endsWith("t") || root.endsWith("d") || root.endsWith("m") || root.endsWith("n") || root.endsWith("e") || root.endsWith('te');
+    const shouldAddE = !weakVerb && !verb.praeteritum_ich.endsWith('e');
 
     return {
         zeitform: "Präteritum",
         ich: verb.praeteritum_ich,
-        du: root + "st",
-        er: root + "t",
-        wir: root + "en",
-        ihr: root + "t",
-        sie: root + "en",
+        du: verb.praeteritum_ich + (shouldAddE ? 'e' : '') + "st",
+        er: verb.praeteritum_ich,
+        wir: verb.praeteritum_ich + (shouldAddE? 'e' : '') +"n",
+        ihr: verb.praeteritum_ich +  (shouldAddE ? 'e' : '')+"t",
+        sie: verb.praeteritum_ich + (shouldAddE? 'e': '') + "n",
     };
 }
 
@@ -115,7 +120,6 @@ export const getFuturI = (verb: Verb): VerbZeitform => {
 
 export const getPerfekt = (verb: Verb): VerbZeitform => {
     const hilfsverbPraesens = getHilfsverbPraesens(verb);
-    console.log(hilfsverbPraesens);
 
     return {
         zeitform: "Perfekt",

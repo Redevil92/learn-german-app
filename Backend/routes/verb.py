@@ -4,13 +4,15 @@ from sqlalchemy.sql.expression import func
 from models import VerbModel
 from schemas import VerbSchema
 
+from db import db
+
 blp = Blueprint("VerbBlueprint", "verbs", description="Operations on verbs")
 
 @blp.route('/verb/<string:verb>', methods=['GET'])
 @blp.response(200, VerbSchema)
 def get_words(verb:str):
     verb = VerbModel.query \
-        .filter(VerbModel.infinitive.ilike(f'%{verb}%')) \
+        .filter(VerbModel.infinitive.ilike(f'{verb}%')) \
         .order_by(func.length(VerbModel.infinitive)) \
         .first()
     

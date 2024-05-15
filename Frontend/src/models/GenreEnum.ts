@@ -8,4 +8,5 @@ export enum GenreEnum {
   Adverb = "adv",
   Verb = "v",
   VerbIntransitiv = "vi",
+  VerbTransitiv = "vt",
 }

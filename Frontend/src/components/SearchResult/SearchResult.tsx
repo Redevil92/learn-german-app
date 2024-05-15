@@ -36,7 +36,8 @@ export default function SearchResult(props: { words: Word[] }) {
   const [verb, setVerb] = useState<Verb>();
 
   useEffect(() => {
-    getVerb(firstResult?.word).then((result) => {
+    console.log(firstResult?.word.trim());
+    getVerb(firstResult?.word.trim()).then((result) => {
       setVerb(result);
     });
   }, [firstResult]);
@@ -83,7 +84,8 @@ export default function SearchResult(props: { words: Word[] }) {
           ></WordDescription>
 
           {wordGenre === GenreEnum.Verb ||
-          wordGenre === GenreEnum.VerbIntransitiv ? (
+          wordGenre === GenreEnum.VerbIntransitiv ||
+          wordGenre === GenreEnum.VerbTransitiv ? (
             <div className="mb-5">
               <BaseTabs tabs={tabs} onTabSelect={onTabSelect}></BaseTabs>
             </div>

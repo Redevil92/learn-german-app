@@ -1,6 +1,10 @@
 import React, { FormEvent, useState } from "react";
 import { AxiosError } from "axios";
-import { getSuggestions, getTraslations } from "../../api/dictionaryApi";
+import {
+  getSuggestions,
+  getTraslations,
+  getTraslationsById,
+} from "../../api/dictionaryApi";
 
 import Word from "../../models/Word";
 
@@ -27,9 +31,15 @@ export default function SearchInputWithSuggestions(
     handleSearch(selectedWord ? selectedWord.word : search);
   };
 
-  const handleSearch = async (toSearch: string) => {
+  const handleSearch = async (toSearch: string, wordId?: number) => {
     try {
-      const result = await getTraslations(toSearch);
+      let result: Word[] = [];
+      if (wordId) {
+        result = await getTraslationsById(wordId);
+      } else {
+        result = await getTraslations(toSearch);
+      }
+
       props.onSetWords(result);
       props.onSetWordNotFound(false);
     } catch (error) {
@@ -47,7 +57,7 @@ export default function SearchInputWithSuggestions(
   };
 
   const suggestionSelectedHandler = (word: Word) => {
-    handleSearch(word.word);
+    handleSearch(word.word, word.id);
   };
 
   function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
