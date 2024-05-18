@@ -10,7 +10,7 @@ export default function LoginSection() {
 
   return (
     <>
-      <div className="absolute right-5 top-5 flex z-10">
+      <div className="absolute right-5 top-0 flex z-10">
         <BaseButton
           text="Log in"
           variant={ButtonVariant.PRIMARY}

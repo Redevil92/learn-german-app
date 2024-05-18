@@ -15,9 +15,9 @@ export default function WordDescription({
 
   return (
     <>
-      <div className="word-description">
-        <div className="flex">
-          <h2 className="word-description-title text-3xl font-bold">
+      <div className="mb-[20px">
+        <div className="flex justify-between items-baseline">
+          <h2 className="mb-[0px] text-3xl font-bold">
             <span className={`${genre}-article `}>
               {bestimmteArtikel[genre ?? ""]}
             </span>{" "}

@@ -1,13 +1,17 @@
 import "./App.css";
 
-import HomePage from "./pages/HomePage";
-import LoginSection from "./components/Authentication/LoginSection";
+import Navbar from "./components/Layout/Navbar";
+import { RouterProvider } from "react-router-dom";
+import router from "./router";
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
   return (
     <>
-      <LoginSection></LoginSection>
-      <HomePage></HomePage>
+      <BrowserRouter>
+        <Navbar></Navbar>
+      </BrowserRouter>
+      <RouterProvider router={router}></RouterProvider>
     </>
   );
 }

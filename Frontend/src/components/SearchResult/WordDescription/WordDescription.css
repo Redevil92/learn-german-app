@@ -1,11 +1,3 @@
-.word-description {
-  margin-bottom: 20px;
-}
-
-.word-description-title {
-  margin-bottom: 0px;
-}
-
 .das-article, .n-article{
   color: var(--neuter-color);
 }
@@ -21,14 +13,4 @@
 .pl-article{
   color: var(--plural-color);
 
-}
-
-.genre {
-  font-style: italic;
-}
-
-.flex {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
 }

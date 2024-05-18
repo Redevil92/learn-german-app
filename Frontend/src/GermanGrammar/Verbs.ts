@@ -93,6 +93,33 @@ export const getPraesens = (verb: Verb): VerbZeitform => {
 }
 
 export const getPraeteritum = (verb: Verb): VerbZeitform => {
+
+    // Exceptions
+    // - Many strong/mixed (irregular) verbs change their stem in the simple past (see list of strong and mixed verbs).
+    // Example:
+    // gehen – ging
+    // bringen – brachte
+    // - If the stem of a strong verb ends in s/ß/z, we either leave off the ending s, or we add an extra e.
+    // Example:
+    // lesen – las – du last/du lasest
+    // - If the stem ends in d/t (e.g. warten), we add an e before the ending.
+    // Example:
+    // landen – ich landete, du landetest, er landete, wir landeten, …
+    // bitten – ich bat, du batest, …, ihr batet
+    // - If the stem of a weak verb ends in b/d/g + n (e.g. ordnen) or in consonant + consonant + n (e.g. zeichnen, öffnen), we also add an extra -e before attaching the endings.
+    // Example:
+    // ordnen – ich ordnete, du ordnetest
+    // zeichnen – ich zeichnete, du zeichnetest …
+    // - If the stem of a strong verb ends in ie, we leave off the final -e of the 1st/3rd person plural endings.
+    // Example:
+    // schreien – wir/sie schrien
+    // not: schrieen
+
+    // ref: https://deutsch.lingolia.com/en/grammar/tenses/simple-past
+
+
+
+
     const root = getVerbRoot(verb);
     if(verb.infinitive === 'sein') {
         return seinPraeteritum;
