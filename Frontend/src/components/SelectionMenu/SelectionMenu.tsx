@@ -7,6 +7,10 @@ interface SelectionMenuProps {
 }
 
 export default function SelectionMenu(props: SelectionMenuProps) {
+  const removeIndexFromTitle = (title: string) => {
+    return title.split("-").slice(1).join(" ");
+  };
+
   return (
     <>
       <aside
@@ -17,7 +21,7 @@ export default function SelectionMenu(props: SelectionMenuProps) {
           {props.categories.map((category) => (
             <div key={category.title} className="mb-6">
               <div className="mb-1">
-                <strong>{category.title}</strong>
+                <strong>{removeIndexFromTitle(category.title)}</strong>
               </div>
               <div>
                 {category.items.map((item) => (
@@ -27,12 +31,12 @@ export default function SelectionMenu(props: SelectionMenuProps) {
                     }
                     key={item}
                     className={`category-item py-1 pl-4 cursor-pointer border-l hover:border-[--primary-color] ${
-                      item === props.selectedItem
+                      item === props.selectedItem.split("/")[1]
                         ? "border-[--primary-color] !text-[--primary-color]"
                         : ""
                     }   text-[--font-color_light]`}
                   >
-                    {item}
+                    {removeIndexFromTitle(item)}
                   </div>
                 ))}
               </div>
