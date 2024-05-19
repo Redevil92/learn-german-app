@@ -10,12 +10,15 @@ export default function LoginSection() {
 
   return (
     <>
-      <div className="absolute right-5 top-0 flex z-10">
-        <BaseButton
-          text="Log in"
-          variant={ButtonVariant.PRIMARY}
-          onClick={() => setShowLoginDialog(true)}
-        />
+      <div className="flex z-10 mt-5 mr-5">
+        <div>
+          <BaseButton
+            text="Log in"
+            variant={ButtonVariant.PRIMARY}
+            onClick={() => setShowLoginDialog(true)}
+          />
+        </div>
+
         <div className="ml-5">
           <BaseButton
             text="Sign up"

@@ -5,7 +5,7 @@ import {
   getPerfekt,
   getPlusquamperfekt,
   getFuturII,
-} from "../../../GermanGrammar/Verbs";
+} from "../../../germanGrammar/Verbs";
 import Verb from "../../../models/Verb";
 import VerbTable from "../VerbTable";
 

@@ -1,5 +1,5 @@
-import { bestimmteArtikel } from "../../../GermanGrammar/Articles";
-import { genresLookup } from "../../../GermanGrammar/Genres";
+import { bestimmteArtikel } from "../../../germanGrammar/Articles";
+import { genresLookup } from "../../../germanGrammar/Genres";
 import "./WordDescription.css";
 
 export default function WordDescription({

@@ -11,7 +11,9 @@ function App() {
       <BrowserRouter>
         <Navbar></Navbar>
       </BrowserRouter>
-      <RouterProvider router={router}></RouterProvider>
+      <div className="mt-[--header-height]">
+        <RouterProvider router={router}></RouterProvider>
+      </div>
     </>
   );
 }
