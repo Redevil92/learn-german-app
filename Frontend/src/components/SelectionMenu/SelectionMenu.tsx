@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
 import SelectionMenuCategory from "./SelectionMenuCategory";
 
 interface SelectionMenuProps {
   categories: SelectionMenuCategory[];
+  selectedItem: string;
+  onItemSelected: (item: string) => void;
 }
 
 export default function SelectionMenu(props: SelectionMenuProps) {
@@ -14,13 +15,23 @@ export default function SelectionMenu(props: SelectionMenuProps) {
       >
         <div className="w-[--selection-menu-width] pl-[40px] ">
           {props.categories.map((category) => (
-            <div className="mb-6">
+            <div key={category.title} className="mb-6">
               <div className="mb-1">
                 <strong>{category.title}</strong>
               </div>
               <div>
                 {category.items.map((item) => (
-                  <div className="category-item py-1 pl-4 cursor-pointer border-l hover:border-[--primary-color]  hover:text-[--primary-color] text-[--font-color_light]">
+                  <div
+                    onClick={() =>
+                      props.onItemSelected(`${category.title}/${item}`)
+                    }
+                    key={item}
+                    className={`category-item py-1 pl-4 cursor-pointer border-l hover:border-[--primary-color] ${
+                      item === props.selectedItem
+                        ? "border-[--primary-color] !text-[--primary-color]"
+                        : ""
+                    }   text-[--font-color_light]`}
+                  >
                     {item}
                   </div>
                 ))}
