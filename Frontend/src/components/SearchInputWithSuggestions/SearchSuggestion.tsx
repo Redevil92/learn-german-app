@@ -28,14 +28,21 @@ export default function SearchSuggestion(props: SearchSuggestionProps) {
     <>
       <div
         onClick={() => props.onSuggestionSelected(props.suggestion)}
-        className="p-2 pl-[15px] hover:bg-slate-100 rounded-r-3xl flex items-center justify-start"
+        className="p-2 pl-[15px] hover:bg-slate-100 rounded-r-3xl flex items-center justify-between"
       >
-        <div
-          className={`left-[15px]  text-xs font-extrabold w-[35px] text-ellipsis overflow-hidden ${wordGenre}-article `}
-        >
-          {wordGenreDisplay}
+        <div className="flex items-center justify-start">
+          <div
+            className={`left-[15px]  text-xs font-extrabold w-[35px] text-ellipsis overflow-hidden ${wordGenre}-article `}
+          >
+            {wordGenreDisplay}
+          </div>
+          <div>{props.suggestion.word}</div>
         </div>
-        <div>{props.suggestion.word}</div>
+        <div>
+          <div className="text-xs text-gray-400">
+            {props.suggestion.translation.split(/\{|\;|\|/)[0]}
+          </div>
+        </div>
       </div>
     </>
   );

@@ -39,7 +39,7 @@ export default function GrammarPage() {
 
   return (
     <>
-      <div className="flex mt-5">
+      <div className="flex">
         <SelectionMenu
           categories={categories}
           selectedItem={selectedItem}

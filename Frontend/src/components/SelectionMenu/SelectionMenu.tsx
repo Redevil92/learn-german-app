@@ -15,7 +15,7 @@ export default function SelectionMenu(props: SelectionMenuProps) {
     <>
       <aside
         style={{ height: `calc(100vh - var(--header-height))` }}
-        className="list fixed pt-[40px] text-base overflow-scroll"
+        className="list fixed m-0 pt-[40px] text-base overflow-y-scroll"
       >
         <div className="w-[--selection-menu-width] pl-[40px] ">
           {props.categories.map((category) => (
