@@ -1,10 +1,13 @@
 from flask_sqlalchemy import SQLAlchemy
 from models import VerbModel
 from models import DictionaryItemModel
+from sqlalchemy import delete
 
 
 def upload_verbs_database(db:SQLAlchemy):
     print("@@@ STARTING @@@@")
+
+
     
     db.create_all()
     file_path = '/Users/stefanobadalucco/Coding/Web/learn-german-app/Backend/static/verbs.csv'
@@ -48,9 +51,19 @@ def upload_verbs_database(db:SQLAlchemy):
 
    
 
-def upload_words_database(db:SQLAlchemy, file_path:str):
+def upload_words_database(db:SQLAlchemy, delete_all:bool = False):
+    print("@@@ STARTING  NEW @@@@")
+
+    print("DELETING ALL RECORDS FROM THE DATABASE")
+    if delete_all:
+        db.session.execute(delete(DictionaryItemModel))
+        db.session.commit()
+    print("DELETED ALL RECORDS FROM THE DATABASE")
+
     db.create_all()
-    #file_path = '/Users/stefanobadalucco/Downloads/end/static/de-en.txt'
+
+    print("@@@ CREATE @@@@")
+    file_path = '/Users/stefanobadalucco/Coding/Web/learn-german-app/Backend/static/de-en.txt'
     database_file = open(file_path, 'r', encoding='utf-8')
     count = 0
 
@@ -59,27 +72,31 @@ def upload_words_database(db:SQLAlchemy, file_path:str):
     
         # Get next line from file
         line = database_file.readline()
-        word = ''
+        row_id = count
+        
+        
         word_in_detail = ''
         translation = ''
 
 
     # delimiter_index = min(line.find("{"), line.find(";"), line.find("|")) 
-        indexes = [line.find("{"), line.find(";"), line.find("|")]
-        delimiter_index = -1
-        for index in indexes:
-            if index != -1:
-                if delimiter_index == -1:
-                    delimiter_index = index
-                else:
-                    delimiter_index = min(delimiter_index, index)
+
+
+        # indexes = [line.find("{"), line.find(";"), line.find("|")]
+        # delimiter_index = -1
+        # for index in indexes:
+        #     if index != -1:
+        #         if delimiter_index == -1:
+        #             delimiter_index = index
+        #         else:
+        #             delimiter_index = min(delimiter_index, index)
                 
         
         
-        if delimiter_index != -1 or delimiter_index != 0: 
-            word = line[:delimiter_index]  
-        else:
-            word = line[:line.find("::")]
+        # if delimiter_index != -1 or delimiter_index != 0: 
+        #     word = line[:delimiter_index]  
+        # else:
+        #     word = line[:line.find("::")]
 
         delimiter_index = line.find("::")
         if delimiter_index != -1:
@@ -88,10 +105,29 @@ def upload_words_database(db:SQLAlchemy, file_path:str):
 
         if not line:
             break
+
+
+        different_words_in_row = line.split('::')[0].split('|')
+
+        for word in different_words_in_row:
+            type = ''
+            if word.find('{') != -1:
+                entry_word = word.split('{')[0]
+                type = word.split('{')[1].split('}')[0]
+
+            database_entries = word.split(';')
+            
+            for entry in database_entries:
+
+                entry_word = entry.split('{')[0]
+                entry_word = entry_word.split('(')[0]
+                entry_word = entry_word.strip()
+                
+                record = DictionaryItemModel(word=entry_word, type = type, row_id = row_id ,word_in_detail=word_in_detail, translation=translation)
+                db.session.add(record)
         
+
         
-        record = DictionaryItemModel(word=word, word_in_detail=word_in_detail, translation=translation)
-        db.session.add(record)
 
         if count % 3000 == 0:
             print("Count", count)

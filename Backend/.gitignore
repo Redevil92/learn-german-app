@@ -2,3 +2,4 @@ __pycache__/
 german_app_env/*
 .DS_Store
 static/
+instance/

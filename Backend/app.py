@@ -16,7 +16,7 @@ from routes.dictionary import blp as DictionaryBlueprint
 
 from models import DictionaryItemModel
 
-from helpers.db_upload import upload_verbs_database
+from helpers.db_upload import upload_words_database, upload_verbs_database
 
 
 def create_app(db_url=None):
@@ -34,10 +34,13 @@ def create_app(db_url=None):
     app.config["PROPAGATE_EXCEPTIONS"] = True
     db.init_app(app)
     migrate = Migrate(app, db)
+    
     api = Api(app)
 
     app.config["JWT_SECRET_KEY"] = "mySuperSecretKey"
     jwt = JWTManager(app)
+
+    
 
     # @jwt.additional_claims_loader
     # def add_claims_to_jwt(identity):
@@ -108,11 +111,14 @@ def create_app(db_url=None):
     # api.register_blueprint(StoreBlueprint)
     # api.register_blueprint(TagBlueprint)
 
+
+    
     CORS(app, support_credentials=True)
 
     # @app.route('/upload', methods=['GET'])
     # def get_words():
-    #     upload_verbs_database(db)
+    #     upload_words_database(db, True)
+    #     #upload_verbs_database(db)
     
 
     return app

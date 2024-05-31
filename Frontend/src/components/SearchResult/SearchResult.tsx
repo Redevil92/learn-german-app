@@ -79,7 +79,7 @@ export default function SearchResult(props: { words: Word[] }) {
       {firstResult && (
         <div>
           <WordDescription
-            genre={wordGenre}
+            genre={firstResult.type}
             word={firstResult.word}
           ></WordDescription>
 

@@ -66,6 +66,8 @@ class UserSchema(Schema):
 
 class DictionaryItemSchema(Schema):
     id = fields.Int(required=True)
+    row_id = fields.Int(required=True)
     word = fields.Str(required=True)
+    type = fields.Str(required=True)
     word_in_detail = fields.Str(required=True)
     translation = fields.Str(required=True)
