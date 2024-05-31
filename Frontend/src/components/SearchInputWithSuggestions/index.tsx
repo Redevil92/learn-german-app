@@ -60,6 +60,10 @@ export default function SearchInputWithSuggestions(
     handleSearch(word.word, word.id);
   };
 
+  const focusInput = () => {
+    (inputRef.current as HTMLInputElement)?.focus();
+  };
+
   function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
     setSearch(e.target.value);
 
@@ -74,16 +78,19 @@ export default function SearchInputWithSuggestions(
   }
 
   const ref = useOutsideClick(resetSuggestions);
+  const inputRef = React.createRef<HTMLInputElement>();
 
   return (
     <>
       <form className="relative my-auto mx-0 mt-[40px]" onSubmit={onSubmit}>
         <div
           ref={ref}
+          onClick={focusInput}
           className="border border-[#cad3db] w-[--search-input-width_desktop] py-[15px] pr-[20px] bg-white  outline-none shadow-md rounded-3xl"
         >
           <input
             type="text"
+            ref={inputRef}
             className="outline-none w-[100%] ml-[1px] pl-[49px] pr-[20px]"
             placeholder="Search a word in German..."
             onChange={handleInputChange}

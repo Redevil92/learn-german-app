@@ -36,10 +36,15 @@ export default function SearchResult(props: { words: Word[] }) {
   const [verb, setVerb] = useState<Verb>();
 
   useEffect(() => {
-    console.log(firstResult?.word.trim());
-    getVerb(firstResult?.word.trim()).then((result) => {
-      setVerb(result);
-    });
+    if (
+      firstResult.type === GenreEnum.Verb ||
+      firstResult.type === GenreEnum.VerbIntransitiv ||
+      firstResult.type === GenreEnum.VerbTransitiv
+    ) {
+      getVerb(firstResult?.word.trim()).then((result) => {
+        setVerb(result);
+      });
+    }
   }, [firstResult]);
 
   useEffect(() => {
