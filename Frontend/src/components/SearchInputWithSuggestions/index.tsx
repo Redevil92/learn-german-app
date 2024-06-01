@@ -9,6 +9,7 @@ import {
 import Word from "../../models/Word";
 
 import SearchSuggestion from "./SearchSuggestion";
+import BaseIcon from "../Shared/BaseIcon";
 
 import { useOutsideClick } from "../../hooks/useOutsideClick";
 
@@ -64,11 +65,11 @@ export default function SearchInputWithSuggestions(
     (inputRef.current as HTMLInputElement)?.focus();
   };
 
-  function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setSearch(e.target.value);
+  function handleInputChange(search: string) {
+    setSearch(search);
 
-    if (e.target.value) {
-      getSuggestions(e.target.value).then((suggestions) => {
+    if (search) {
+      getSuggestions(search).then((suggestions) => {
         setSuggestions(suggestions);
       });
       setSelectedWord(undefined);
@@ -76,6 +77,16 @@ export default function SearchInputWithSuggestions(
       resetSuggestions();
     }
   }
+
+  const addCharToSearch = (char: string) => {
+    handleInputChange(search + char);
+
+    // add the char to the search input
+    if (inputRef.current) {
+      inputRef.current.value = search + char;
+      focusInput();
+    }
+  };
 
   const ref = useOutsideClick(resetSuggestions);
   const inputRef = React.createRef<HTMLInputElement>();
@@ -93,7 +104,9 @@ export default function SearchInputWithSuggestions(
             ref={inputRef}
             className="outline-none w-[100%] ml-[1px] pl-[49px] pr-[20px]"
             placeholder="Search a word in German..."
-            onChange={handleInputChange}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+              handleInputChange(event.target.value)
+            }
           />
           <span
             onClick={onSubmit}
@@ -101,6 +114,17 @@ export default function SearchInputWithSuggestions(
           >
             search
           </span>
+          <div className="absolute right-[15px] top-[15px] flex">
+            <div>
+              <BaseIcon text={"ä"} onClick={() => addCharToSearch("ä")} />
+            </div>
+            <div className="ml-[5px]">
+              <BaseIcon text={"ö"} onClick={() => addCharToSearch("ö")} />
+            </div>
+            <div className="ml-[5px]">
+              <BaseIcon text={"ü"} onClick={() => addCharToSearch("ü")} />
+            </div>
+          </div>
 
           {suggestions && suggestions.length > 0 && (
             <div className="mt-4 ">
