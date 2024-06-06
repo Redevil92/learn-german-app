@@ -5,7 +5,7 @@ export default function BaseInput({
 }: {
   mdiIcon?: string;
   text?: string;
-  onClick: () => void;
+  onClick?: () => void;
 }) {
   return (
     <>
