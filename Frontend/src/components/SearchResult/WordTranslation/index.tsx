@@ -1,6 +1,5 @@
 import BaseIcon from "../../Shared/BaseIcon";
 import Word from "../../../models/Word";
-import "./WordTranslation.css";
 
 export default function WordTranslations({
   wordTranslation,
